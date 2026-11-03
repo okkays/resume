@@ -1,0 +1,108 @@
+typedef Experience = ({
+  String company,
+  String? jobTitle,
+  DateTime startDate,
+  DateTime? endDate,
+  String location,
+  List<String> detail,
+});
+
+typedef Education = ({
+  String institution,
+  String degreeOrCert,
+  DateTime startDate,
+  String? endDatePrefix,
+  DateTime? endDate,
+  String location,
+  List<String> detail,
+});
+
+final C = (
+  name: 'Kevin Kays',
+  jobTitle: 'Principal Software Engineer and Consultant',
+  email: 'okkays@pm.me',
+  phone: '7576520310',
+  web: 'okkays.com',
+  headline: "Cat's roomate, husband, problem solver, engineer, consultant, outdoor enthusiast.",
+  elevator: [
+    r"I've spent my ten-plus years in software working with both tech industry giants and public-sector groups leading, building, and mentoring technical teams in pursuit of simple, practical solutions to loosely-defined problems.",
+    r"",
+    r"I'd love to spend the next ten-plus years working with a good group of mix-minded people to build simple, efficient tools and workflows that help people in a way that's socially and environmentally conscious.",
+  ],
+  expertise: [
+    r"Active listening, solving miscommunication, empowering teammates and clients, continuously learning by recognizing my mistakes. Understanding that progress takes work.",
+    r"",
+    r"Vim, Python (Flask, Django), Typescript (Javascript), Dart (Flutter), Ruby (Jekyll, Rails), Jinja/erb/html/sass/scss/css, aws/gcp (wysiwyg, cli, terraform), Unix shell (bash/vimscript/lua/tmux/etc), general IT tasks, general make computer do thing ability.",
+    r"",
+    r"Teaching and explaining the above skill-set, plus new things I'm learning, to whoever will put up with me.",
+  ],
+  experience: <Experience>[
+    (
+      company: 'Nava PBC',
+      jobTitle: 'Principal Software Engineer and Technical Lead',
+      startDate: DateTime(2022, 12),
+      endDate: DateTime(2025, 12),
+      location: 'Fully Remote, US Mountain States',
+      detail: [
+        r"Technical Lead for Nava's projects with the Department of Justice (ada.gov and civilrights.justice.gov) and Massachusetts' Department of Early Education and Care",
+        r"- Worked daily with internal and client-side Directors, technical leadership, compliance, front-line personnel, and cross-disciplinary groups to gather requirements, identify gaps, brainstorm solutions, and build technical proposals that passed bureaucratic scrutiny.",
+        r"- Led cross-disciplinary teams of four to over a dozen internal, vendor, and client staff to break down work, distribute tasks, and iterate.",
+        r"- As lead, I was the last stop for solving or working around any technical problem that arose, including working with clients to adjust timelines, debug software, systems, networking, etc. ",
+        r"- Participation in non-project bid work on top (and without disruption to) normal project responsibilities, including proposal writing, teaming, and technical challenge work resulting in awards like the $100M HHS SWIFT BPA.",
+        r"- Cross-project mentorship and participation in company-wide initiatives, hiring/interviewing, etc.",
+      ],
+    ),
+    (
+      company: 'Raybeam/DEPT@Google',
+      jobTitle: 'Senior Software Engineer',
+      startDate: DateTime(2015, 10),
+      endDate: DateTime(2022, 12),
+      location: 'Newburyport, MA',
+      detail: [
+        "When I joined, Raybeam was a 20-odd person company tackling loosely-defined problems with a loosely-defined engineering workflow. When I left, we'd grown to 80+ people, learned, and evolved together. I played a key role in that evolution, especially with regards to our project work at Google, including:",
+        "- Leading teams of four to fifteen people to design, produce, and deliver solutions used by hundreds of Google employees and vendors on a daily basis.",
+        "- Achieving readability in Python, Typescript, Java, and AIP, making me the first person at Raybeam certified to submit and review Google code autonomously.",
+        "- Mentoring, enabling, and advocating for teammates and engineers across our company to achieve the same level of ability and client trust.",
+        "- Assembling, augmenting, and training teammates on a scalable framework for our projects, adhering to strict security and licensing constraints",
+        "- Implementing a rigorous, adaptable devops workflow across all Raybeam@Google project teams emphasizing small, logical changes and automated authoring, review, testing, deployment, and reporting",
+        "I also regularly volunteered for and led initiatives designed to make our company an easier, more enjoyable, more rewarding place to work.",
+      ],
+    ),
+    (
+      company: 'Sabbatical',
+      jobTitle: null,
+      startDate: DateTime(2025, 12),
+      endDate: null,
+      location: 'Europe, Canada, Alaska, Mountain states',
+      detail: [
+        "I took time off with my wife and cat to travel full time (public sector service work, while fulfilling, required us to be in the US). Spent our time driving to the Arctic Ocean, running/hiking over 2000km, XC skate and classic skiing a few hundred more, descending a few dozen technical canyons, exploring a few glaciers, enjoying sunsets, repairing and maintaining our own vehicle and gear, and generally enjoying the constant problem solving and out-of-the-box thinking required from a life on the road.",
+        "We've finally reached the point where exploring new places, while still fun and exciting, doesn't feel like moving forward anymore, and we're ready to contribute to a community and build something lasting.",
+      ],
+    ),
+  ],
+  education: <Education>[
+    (
+      institution: 'Virginia Tech',
+      degreeOrCert: 'Bachelor of Computer Science',
+      startDate: DateTime(2011, 8),
+      endDatePrefix: null,
+      endDate: DateTime(2015, 5),
+      location: 'Blacksburg, VA',
+      detail: [],
+    ),
+    (
+      institution: 'NOLS Wilderness Medicine',
+      degreeOrCert: 'Wilderness First Responder',
+      startDate: DateTime(2024, 10),
+      endDatePrefix: 'Valid until ',
+      endDate: DateTime(2028, 10, 18),
+      location: 'Flagstaff Field Institute, AZ',
+      detail: [
+        '- Training in patient assessment and management of various medical problems',
+        '- Certification in Adult, Child, and Infant CPR, AED, and Airway Management',
+        '- Certification in Epinephrine Auto-injector use',
+      ],
+    ),
+  ],
+  references: '_(references available upon request)_',
+);
