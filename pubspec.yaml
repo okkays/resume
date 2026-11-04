@@ -89,8 +89,8 @@ flutter:
           weight: 700
     - family: Lato
       fonts:
-        - asset: fonts/Lato-Light.ttf
-        - asset: fonts/Lato-LightItalic.ttf
+        - asset: fonts/Lato-Regular.ttf
+        - asset: fonts/Lato-Italic.ttf
           style: italic
         - asset: fonts/Lato-Semibold.ttf
           weight: 700

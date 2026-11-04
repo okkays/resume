@@ -124,11 +124,11 @@ final C = (
       ],
     ),
   ],
-  references: '_(references available upon request)_',
+  references: '_references available upon request_',
   attributions: [
-    'colorscheme: [gruvbox.org](https://gruvbox.org/)',
-    'regular font: [](https://www.latofonts.com/)',
-    'monospace font: [sourcefoundry.org/hack](https://sourcefoundry.org/hack/)',
+    'colors: [gruvbox.org](https://gruvbox/)',
+    'regular font: [lato](https://www.latofonts.com/)',
+    'monospace font: [sourcefoundry:hack](https://sourcefoundry.org/hack/)',
     'written by hand in dart/flutter',
   ],
 );
