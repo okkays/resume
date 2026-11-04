@@ -13,3 +13,17 @@ MarkdownStyleSheet markdownBodyAs(
 ) => .fromTheme(
   Theme.of(context),
 ).copyWith(p: getStyle(Theme.of(context).textTheme));
+
+extension StrokeColor on Color {
+  Color get strokeColor =>
+      computeLuminance() > 0.4 ? onLightColor : onDarkColor;
+}
+
+const verticalDivider = VerticalDivider(
+  width: 20,
+  thickness: 1,
+  indent: 0,
+  endIndent: 0,
+  color: Colors.grey,
+);
+

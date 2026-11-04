@@ -3,20 +3,12 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:resume/brightness_toggle.dart';
 import 'package:resume/content.dart';
+import 'package:resume/date_display.dart';
 import 'package:resume/icon_box.dart';
 import 'package:resume/theme.dart';
 import 'package:resume/constants.dart';
 import 'package:resume/tag.dart';
-
-const _verticalDivider = VerticalDivider(
-  width: 20,
-  thickness: 1,
-  indent: 0,
-  endIndent: 0,
-  color: Colors.grey,
-);
-
-final _dateYm = DateFormat('MMM y');
+import 'package:collection/collection.dart';
 
 void main() {
   runApp(const ResumeApp());
@@ -109,7 +101,7 @@ class _ResumeState extends State<Resume> {
         child: SingleChildScrollView(
           clipBehavior: .none,
           child: ConstrainedBox(
-            constraints: .new(maxWidth: 1000),
+            constraints: .new(maxWidth: 850),
             child: Padding(
               padding: .fromLTRB(lrPadding, tbPadding, lrPadding, tbPadding),
               child: SelectionArea(
@@ -124,46 +116,51 @@ class _ResumeState extends State<Resume> {
                         children: [
                           Visibility(visible: isDesktop, child: W.avatar),
                           Expanded(
-                            child: Column(
-                              spacing: spacing / 2,
-                              mainAxisAlignment: .center,
-                              crossAxisAlignment: isDesktop ? .start : .stretch,
-                              children: [
-                                Text(C.name, style: textTheme.headlineMedium),
-                                FittedBox(
-                                  fit: .fitWidth,
-                                  child: Text(
-                                    C.jobTitle,
-                                    style: textTheme.headlineSmall,
-                                  ),
-                                ),
-                                FittedBox(
-                                  fit: .fitWidth,
-                                  child: IntrinsicHeight(
-                                    child: Row(
-                                      children: [
-                                        Text(C.email),
-                                        _verticalDivider,
-                                        Text(C.phone),
-                                        _verticalDivider,
-                                        Text(C.web),
-                                      ],
+                            child: Padding(
+                              padding: .only(right: spacing / 2),
+                              child: Column(
+                                spacing: spacing / 2,
+                                mainAxisAlignment: .center,
+                                crossAxisAlignment: isDesktop
+                                    ? .start
+                                    : .stretch,
+                                children: [
+                                  Text(C.name, style: textTheme.headlineMedium),
+                                  FittedBox(
+                                    fit: .fitWidth,
+                                    child: Text(
+                                      C.jobTitle,
+                                      style: textTheme.headlineSmall,
                                     ),
                                   ),
-                                ),
-                                Wrap(
-                                  spacing: spacing / 4,
-                                  runSpacing: spacing / 4,
-                                  children: [
-                                    ...C.headlineTags.map(
-                                      (h) => Tag(
-                                        h.toLowerCase().replaceAll(' ', '_'),
-                                        color: colorScheme.secondary,
+                                  FittedBox(
+                                    fit: .fitWidth,
+                                    child: IntrinsicHeight(
+                                      child: Row(
+                                        children: [
+                                          Text(C.email),
+                                          verticalDivider,
+                                          Text(C.phone),
+                                          verticalDivider,
+                                          Text(C.web),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
+                                  ),
+                                  Wrap(
+                                    spacing: spacing / 2,
+                                    runSpacing: spacing / 2,
+                                    children: [
+                                      ...C.headlineTags.map(
+                                        (h) => Tag(
+                                          h.toLowerCase().replaceAll(' ', '_'),
+                                          color: colorScheme.secondary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -197,12 +194,19 @@ class _ResumeState extends State<Resume> {
                                   runSpacing: spacing / 2,
                                   crossAxisAlignment: .start,
                                   children: [
-                                    ...C.expertiseChips.map(
-                                      (c) => Tag(
-                                        c.toLowerCase().replaceAll(' ', '_'),
-                                        color: colorScheme.tertiary,
+                                    ...C.expertiseChips.expandIndexed(
+                                      (i, chips) => chips.map(
+                                        (c) => Tag(
+                                          c.toLowerCase().replaceAll(' ', '_'),
+                                          color: [
+                                            colorScheme.primary,
+                                            // colorScheme.secondary,
+                                            colorScheme.tertiary,
+                                          ][i % 2],
+                                        ),
                                       ),
                                     ),
+                                    Tag('etc', color: colorScheme.secondary),
                                   ],
                                 ),
                                 Divider(),
@@ -223,7 +227,10 @@ class _ResumeState extends State<Resume> {
                               color: colorScheme.secondary,
                               label: 'Past Experience',
                               icon: Icons.work_history,
-                              child: ExperienceView(e),
+                              child: ExperienceView(
+                                e,
+                                color: colorScheme.secondary,
+                              ),
                             ),
                           ),
                         ],
@@ -237,7 +244,10 @@ class _ResumeState extends State<Resume> {
                               color: colorScheme.tertiary,
                               label: 'Education',
                               icon: Icons.work_history,
-                              child: EducationView(e),
+                              child: EducationView(
+                                e,
+                                color: colorScheme.tertiary,
+                              ),
                             ),
                           ),
                         ],
@@ -276,21 +286,18 @@ class _ResumeState extends State<Resume> {
 
 class ExperienceView extends StatelessWidget {
   final Experience E;
-  const ExperienceView(this.E, {super.key});
+  final Color color;
+  const ExperienceView(this.E, {required this.color, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String startDate = _dateYm.format(E.startDate);
-    final String endDate = E.endDate != null
-        ? _dateYm.format(E.endDate!)
-        : 'present';
     return Wrap(
       children: [
         IntrinsicHeight(
           child: Row(
             children: [
               Text(E.company, style: TextTheme.of(context).titleLarge),
-              Visibility(visible: E.jobTitle != null, child: _verticalDivider),
+              Visibility(visible: E.jobTitle != null, child: verticalDivider),
               Visibility(
                 visible: E.jobTitle != null,
                 child: Text(E.jobTitle ?? ''),
@@ -301,8 +308,12 @@ class ExperienceView extends StatelessWidget {
         IntrinsicHeight(
           child: Row(
             children: [
-              Text('$startDate - $endDate'),
-              _verticalDivider,
+              DateDisplay(
+                color: color,
+                startDate: E.startDate,
+                endDate: E.endDate,
+              ),
+              verticalDivider,
               Text(E.location),
             ],
           ),
@@ -316,22 +327,19 @@ class ExperienceView extends StatelessWidget {
 }
 
 class EducationView extends StatelessWidget {
+  final Color color;
   final Education E;
-  const EducationView(this.E, {super.key});
+  const EducationView(this.E, {required this.color, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String startDate = _dateYm.format(E.startDate);
-    final String endDate = E.endDate != null
-        ? _dateYm.format(E.endDate!)
-        : 'present';
     return Wrap(
       children: [
         IntrinsicHeight(
           child: Row(
             children: [
               Text(E.institution),
-              _verticalDivider,
+              verticalDivider,
               Text(E.degreeOrCert),
             ],
           ),
@@ -339,8 +347,13 @@ class EducationView extends StatelessWidget {
         IntrinsicHeight(
           child: Row(
             children: [
-              Text('$startDate - ${E.endDatePrefix ?? ''}$endDate'),
-              _verticalDivider,
+              DateDisplay(
+                startDate: E.startDate,
+                endDate: E.endDate,
+                endDatePrefix: E.endDatePrefix,
+                color: color,
+              ),
+              verticalDivider,
               Text(E.location),
             ],
           ),

@@ -37,24 +37,26 @@ final C = (
     r"I'd love to spend the next ten-plus years working with a good group of people to build simple, efficient tools and workflows that help others achieve their goals in a way that's socially and environmentally conscious.",
   ],
   expertiseChips: [
-    "Vim", // vim
-    "Python", "Flask", "Django", // python
-    "Typescript", "Javascript", // javascript
-    "Dart", "Flutter", // dart
-    "Ruby", "Jekyll", "Rails", // ruby
-    "Jinja", "ERB", "HTML", "markdown", // markup
-    "[s]css", // style
-    "aws", "gcp", "terraform", // cloud
-    "unix", "bash", "vimscript", "lua", "tmux", // scripting
-    "webdriver", "playwright", // tests
-    "circleci", "github", // devops
-    "general it", "debugging", // general
-    "etc",
+    ["Vim"], // vim
+    ["Python", "Flask", "Django", "Jinja"], // python
+    ["Typescript", "Javascript", "Angular", "React"], // javascript
+    ["Dart", "Flutter"], // dart
+    ["Ruby", "Jekyll", "Rails", "ERB"], // ruby
+    ["SQL", "postgres", "bigquery"], // sql
+    ["HTML", "[s]css", "markdown"], // markup
+    ["aws", "gcp", "cloud.gov", "terraform"], // cloud
+    ["mac", "linux", "unix", "bash", "vimscript", "lua", "tmux"], // scripting
+    ["webdriver", "playwright", "tdd"], // tests
+    ["a11y", "lighthouse"], // a11y
+    ["git", "github", "circleci"], // devops
+    ["proposal writing", "documentation"], // docs
+    ["debugging"], // general
+    ["general it"],
   ],
   expertiseHeadline: [
-    r"In additional to my technical skills, I put great effort into active listening, solving miscommunication, empowering teammates and clients, continuously learning by recognizing my mistakes, and building patience through the understanding that progress takes work.",
+    r"In additional to my technical skills, I put great effort into active listening, empowering teammates and clients, mentorship, solving miscommunication, continuously learning by recognizing my mistakes, and building patience through the understanding that progress takes work.",
     r"",
-    r"Teaching and explaining what I know, plus new things I'm learning, to anyone who'll put up with me.",
+    r"I personally learn and grow by teaching and explaining what I know, plus new things I'm learning, to anyone who'll put up with me.",
   ],
   experience: <Experience>[
     (

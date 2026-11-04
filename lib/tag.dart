@@ -8,10 +8,6 @@ class Tag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final strokeColor = color.computeLuminance() > 0.4
-        ? onLightColor
-        : onDarkColor;
-
     return DecoratedBox(
       decoration: BoxDecoration(color: color, borderRadius: .circular(5)),
       child: Padding(
@@ -20,7 +16,7 @@ class Tag extends StatelessWidget {
           content,
           softWrap: true,
           style: TextTheme.of(context).labelMedium!
-              .copyWith(fontFamily: 'Hack', color: strokeColor),
+              .copyWith(fontFamily: 'Hack', color: color.strokeColor),
         ),
       ),
     );
