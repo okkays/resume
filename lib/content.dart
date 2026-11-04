@@ -1,17 +1,8 @@
 typedef Experience = ({
-  String company,
-  String? jobTitle,
+  String title,
+  String? subtitle,
   DateTime startDate,
-  DateTime? endDate,
-  String location,
-  List<String> detail,
-});
-
-typedef Education = ({
-  String institution,
-  String degreeOrCert,
-  DateTime startDate,
-  String? endDatePrefix,
+  String? datePrefix,
   DateTime? endDate,
   String location,
   List<String> detail,
@@ -50,7 +41,7 @@ final C = (
     ["a11y", "lighthouse"], // a11y
     ["git", "github", "circleci"], // devops
     ["proposal writing", "documentation"], // docs
-    ["interviewing"], // company
+    ["interviewing", "cross-functional"], // company
     ["debugging"], // general
     ["general it"],
   ],
@@ -61,9 +52,10 @@ final C = (
   ],
   experience: <Experience>[
     (
-      company: 'Nava PBC',
-      jobTitle: 'Principal Software Engineer and Technical Lead',
+      title: 'Nava PBC',
+      subtitle: 'Principal Software Engineer and Technical Lead',
       startDate: DateTime(2022, 12),
+      datePrefix: null,
       endDate: DateTime(2025, 12),
       location: 'Fully Remote',
       detail: [
@@ -76,9 +68,10 @@ final C = (
       ],
     ),
     (
-      company: 'Raybeam/DEPT@Google',
-      jobTitle: 'Senior Software Engineer',
+      title: 'Raybeam/DEPT@Google',
+      subtitle: 'Senior Software Engineer',
       startDate: DateTime(2015, 10),
+      datePrefix: null,
       endDate: DateTime(2022, 12),
       location: 'Newburyport, MA',
       detail: [
@@ -103,23 +96,23 @@ final C = (
     //   ],
     // ),
   ],
-  education: <Education>[
+  education: <Experience>[
     (
-      institution: 'Virginia Tech',
-      degreeOrCert: 'Bachelor of Computer Science',
+      title: 'Virginia Tech',
+      subtitle: 'Bachelor of Computer Science',
       startDate: DateTime(2011, 8),
-      endDatePrefix: null,
+      datePrefix: null,
       endDate: DateTime(2015, 5),
       location: 'Blacksburg, VA',
       detail: [],
     ),
     (
-      institution: 'NOLS Wilderness Medicine',
-      degreeOrCert: 'Wilderness First Responder',
+      title: 'NOLS Wilderness Medicine',
+      subtitle: 'Wilderness First Responder',
       startDate: DateTime(2024, 10),
-      endDatePrefix: 'Valid until ',
+      datePrefix: 'valid from',
       endDate: DateTime(2028, 10, 18),
-      location: 'Flagstaff Field Institute, AZ',
+      location: 'Flagstaff, AZ',
       detail: [
         '- Training in patient assessment and management of various medical problems',
         '- Certification in Adult, Child, and Infant CPR, AED, and Airway Management',
