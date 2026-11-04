@@ -23,7 +23,14 @@ final C = (
   email: 'okkays@pm.me',
   phone: '7576520310',
   web: 'okkays.com',
-  headline: "Cat's roomate, husband, problem solver, engineer, consultant, outdoor enthusiast.",
+  headlineTags: [
+    'Roomate of cat',
+    'husband',
+    'problem solver',
+    'engineer',
+    'consultant',
+    'outdoor enthusiast',
+  ],
   elevator: [
     r"I've spent my ten-plus years in software working with both tech industry giants and public-sector groups leading, building, and mentoring technical teams in pursuit of simple, practical solutions to loosely-defined problems.",
     r"",

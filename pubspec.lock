@@ -96,6 +96,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gruvbox_color_scheme:
+    dependency: "direct main"
+    description:
+      name: gruvbox_color_scheme
+      sha256: "3ef4bb0133261edb474df1afcda5bdf9019f1693a773ce521b2d7ab152a304e2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   intl:
     dependency: "direct main"
     description:
