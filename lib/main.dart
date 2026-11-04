@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:resume/brightness_toggle.dart';
-import 'package:resume/data.dart';
+import 'package:resume/content.dart';
 import 'package:resume/icon_box.dart';
 import 'package:resume/theme.dart';
 import 'package:resume/constants.dart';
@@ -95,7 +95,7 @@ class _ResumeState extends State<Resume> {
           padding: .fromLTRB(lrPadding, tbPadding, lrPadding, tbPadding),
           child: SelectionArea(
             child: Column(
-              spacing: spacing / 2,
+              spacing: spacing,
               children: [
                 Visibility(visible: isMobile, child: W.avatar),
                 IntrinsicHeight(
