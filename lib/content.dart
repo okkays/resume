@@ -36,12 +36,25 @@ final C = (
     r"",
     r"I'd love to spend the next ten-plus years working with a good group of mix-minded people to build simple, efficient tools and workflows that help people in a way that's socially and environmentally conscious.",
   ],
-  expertise: [
+  expertiseChips: [
+    "Vim", // vim
+    "Python", "Flask", "Django", // python
+    "Typescript", "Javascript", // javascript
+    "Dart", "Flutter", // dart
+    "Ruby", "Jekyll", "Rails", // ruby
+    "Jinja", "ERB", "HTML", "markdown", // markup
+    "[s]css", // style
+    "aws", "gcp", "terraform", // cloud
+    "unix", "bash", "vimscript", "lua", "tmux", // scripting
+    "webdriver", "playwright", // tests
+    "circleci", "github", // devops
+    "general it", "debugging", // general
+    "etc",
+  ],
+  expertiseHeadline: [
     r"Active listening, solving miscommunication, empowering teammates and clients, continuously learning by recognizing my mistakes. Understanding that progress takes work.",
     r"",
-    r"Vim, Python (Flask, Django), Typescript (Javascript), Dart (Flutter), Ruby (Jekyll, Rails), Jinja/erb/html/sass/scss/css, aws/gcp (wysiwyg, cli, terraform), Unix shell (bash/vimscript/lua/tmux/etc), general IT tasks, general make computer do thing ability.",
-    r"",
-    r"Teaching and explaining the above skill-set, plus new things I'm learning, to whoever will put up with me.",
+    r"Teaching and explaining what I know, plus new things I'm learning, to anyone who'll put up with me.",
   ],
   experience: <Experience>[
     (
@@ -75,17 +88,17 @@ final C = (
         "I also regularly volunteered for and led initiatives designed to make our company an easier, more enjoyable, more rewarding place to work.",
       ],
     ),
-    (
-      company: 'Sabbatical',
-      jobTitle: null,
-      startDate: DateTime(2025, 12),
-      endDate: null,
-      location: 'Europe, Canada, Alaska, Mountain states',
-      detail: [
-        "I took time off with my wife and cat to travel full time (public sector service work, while fulfilling, required us to be in the US). Spent our time driving to the Arctic Ocean, running/hiking over 2000km, XC skate and classic skiing a few hundred more, descending a few dozen technical canyons, exploring a few glaciers, enjoying sunsets, repairing and maintaining our own vehicle and gear, and generally enjoying the constant problem solving and out-of-the-box thinking required from a life on the road.",
-        "We've finally reached the point where exploring new places, while still fun and exciting, doesn't feel like moving forward anymore, and we're ready to contribute to a community and build something lasting.",
-      ],
-    ),
+    // (
+    //   company: 'Sabbatical',
+    //   jobTitle: null,
+    //   startDate: DateTime(2025, 12),
+    //   endDate: null,
+    //   location: 'Europe, Canada, Alaska, Mountain states',
+    //   detail: [
+    //     "I took time off with my wife and cat to travel full time (public sector service work, while fulfilling, required us to be in the US). Spent our time driving to the Arctic Ocean, running/hiking over 2000km, XC skate and classic skiing a few hundred more, descending a few dozen technical canyons, exploring a few glaciers, enjoying sunsets, repairing and maintaining our own vehicle and gear, and generally enjoying the constant problem solving and out-of-the-box thinking required from a life on the road.",
+    //     "We've finally reached the point where exploring new places, while still fun and exciting, doesn't feel like moving forward anymore, and we're ready to contribute to a community and build something lasting.",
+    //   ],
+    // ),
   ],
   education: <Education>[
     (
@@ -112,4 +125,10 @@ final C = (
     ),
   ],
   references: '_(references available upon request)_',
+  attributions: [
+    'colorscheme: [gruvbox.org](https://gruvbox.org/)',
+    'regular font: [](https://www.latofonts.com/)',
+    'monospace font: [sourcefoundry.org/hack](https://sourcefoundry.org/hack/)',
+    'written by hand in dart/flutter',
+  ],
 );

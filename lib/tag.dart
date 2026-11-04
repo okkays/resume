@@ -18,8 +18,9 @@ class Tag extends StatelessWidget {
         padding: .all(3),
         child: Text(
           content,
+          softWrap: true,
           style: TextTheme.of(context).labelMedium!
-              .copyWith(color: strokeColor),
+              .copyWith(fontFamily: 'Hack', color: strokeColor),
         ),
       ),
     );
