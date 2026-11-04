@@ -34,7 +34,7 @@ final C = (
   elevator: [
     r"I've spent my ten-plus years in software working with both tech industry giants and public-sector groups leading, building, and mentoring technical teams in pursuit of simple, practical solutions to loosely-defined problems.",
     r"",
-    r"I'd love to spend the next ten-plus years working with a good group of mix-minded people to build simple, efficient tools and workflows that help people in a way that's socially and environmentally conscious.",
+    r"I'd love to spend the next ten-plus years working with a good group of people to build simple, efficient tools and workflows that help others achieve their goals in a way that's socially and environmentally conscious.",
   ],
   expertiseChips: [
     "Vim", // vim
@@ -52,7 +52,7 @@ final C = (
     "etc",
   ],
   expertiseHeadline: [
-    r"Active listening, solving miscommunication, empowering teammates and clients, continuously learning by recognizing my mistakes. Understanding that progress takes work.",
+    r"In additional to my technical skills, I put great effort into active listening, solving miscommunication, empowering teammates and clients, continuously learning by recognizing my mistakes, and building patience through the understanding that progress takes work.",
     r"",
     r"Teaching and explaining what I know, plus new things I'm learning, to anyone who'll put up with me.",
   ],
@@ -62,7 +62,7 @@ final C = (
       jobTitle: 'Principal Software Engineer and Technical Lead',
       startDate: DateTime(2022, 12),
       endDate: DateTime(2025, 12),
-      location: 'Fully Remote, US Mountain States',
+      location: 'Fully Remote',
       detail: [
         r"Technical Lead for Nava's projects with the Department of Justice (ada.gov and civilrights.justice.gov) and Massachusetts' Department of Early Education and Care",
         r"- Worked daily with internal and client-side Directors, technical leadership, compliance, front-line personnel, and cross-disciplinary groups to gather requirements, identify gaps, brainstorm solutions, and build technical proposals that passed bureaucratic scrutiny.",

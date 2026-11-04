@@ -127,19 +127,28 @@ class _ResumeState extends State<Resume> {
                             child: Column(
                               spacing: spacing / 2,
                               mainAxisAlignment: .center,
-                              crossAxisAlignment: .start,
+                              crossAxisAlignment: isDesktop ? .start : .stretch,
                               children: [
-                                Text(C.name, style: textTheme.titleLarge),
-                                Text(C.jobTitle),
-                                IntrinsicHeight(
-                                  child: Row(
-                                    children: [
-                                      Text(C.email),
-                                      _verticalDivider,
-                                      Text(C.phone),
-                                      _verticalDivider,
-                                      Text(C.web),
-                                    ],
+                                Text(C.name, style: textTheme.headlineMedium),
+                                FittedBox(
+                                  fit: .fitWidth,
+                                  child: Text(
+                                    C.jobTitle,
+                                    style: textTheme.headlineSmall,
+                                  ),
+                                ),
+                                FittedBox(
+                                  fit: .fitWidth,
+                                  child: IntrinsicHeight(
+                                    child: Row(
+                                      children: [
+                                        Text(C.email),
+                                        _verticalDivider,
+                                        Text(C.phone),
+                                        _verticalDivider,
+                                        Text(C.web),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Wrap(
@@ -280,7 +289,7 @@ class ExperienceView extends StatelessWidget {
         IntrinsicHeight(
           child: Row(
             children: [
-              Text(E.company),
+              Text(E.company, style: TextTheme.of(context).titleLarge),
               Visibility(visible: E.jobTitle != null, child: _verticalDivider),
               Visibility(
                 visible: E.jobTitle != null,
