@@ -64,10 +64,10 @@ final C = (
       location: 'Fully Remote',
       detail: [
         r"Technical Lead for Nava's projects with the Department of Justice (ada.gov and civilrights.justice.gov) and Massachusetts' Department of Early Education and Care",
-        r"- Worked daily with internal and client-side Directors, technical leadership, compliance, front-line personnel, and cross-disciplinary groups to gather requirements, identify gaps, brainstorm solutions, and build technical proposals that passed bureaucratic scrutiny.",
+        r"- Worked daily with internal and client-side Directors, technical leadership, compliance, front-line personnel, and cross-disciplinary groups to gather requirements, identify gaps, brainstorm solutions, and build technical proposals and solutions that passed bureaucratic scrutiny.",
         r"- Led cross-disciplinary teams of four to over a dozen internal, vendor, and client staff to break down work, distribute tasks, and iterate.",
-        r"- As lead, I was the last stop for solving or working around any technical problem that arose, including working with clients and end-users to adjust timelines, debug software, systems, networking, etc. ",
-        r"- Participation in non-project bid work on top of (and without disruption to) normal project responsibilities, including proposal writing, teaming, and technical challenge work, contributing to awards such as the $100M HHS SWIFT BPA.",
+        r"- As lead, was the last stop for solving or working around any technical problem that arose, including working with clients and end-users to adjust timelines, debug software, systems, networking, etc. ",
+        r"- Participation in company bid work on top of (and without disruption to) normal project responsibilities, including proposal writing, teaming, and technical challenge work, contributing to awards such as the $100M HHS SWIFT BPA.",
         r"- Cross-project mentorship and participation in company-wide initiatives, hiring/interviewing, etc.",
       ],
     ),
@@ -79,7 +79,7 @@ final C = (
       endDate: DateTime(2022, 12),
       location: 'Newburyport, MA',
       detail: [
-        "When I joined, Raybeam was a 20-or-so person company tackling loosely-defined problems with a loosely-defined engineering workflow. When I left, we'd grown to 80+ people, learned, and evolved together. I played a key role in that evolution, especially with regards to our project work at Google, including:",
+        "When I joined, Raybeam was a 20-or-so person company tackling loosely-defined problems with a flat engineering-only project structure, we'd grown to 80+ people, learned, and evolved together. I played a key role in that evolution, especially with regards to our project work at Google, including:",
         "- Leading teams of four to fifteen people to design, produce, and deliver solutions used by hundreds of Google employees and vendors on a daily basis.",
         "- Achieving readability in Python, Typescript, Java, and AIP, making me the first person at Raybeam certified to submit and review Google code autonomously.",
         "- Mentoring, enabling, and advocating for teammates and engineers across our company to achieve the same level of ability and client trust.",
@@ -104,7 +104,7 @@ final C = (
       title: 'NOLS Wilderness Medicine',
       subtitle: 'Wilderness First Responder',
       startDate: DateTime(2024, 10),
-      datePrefix: 'valid from',
+      datePrefix: '(certified through)',
       endDate: DateTime(2028, 10, 18),
       location: 'Flagstaff, AZ',
       detail: [

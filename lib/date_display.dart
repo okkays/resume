@@ -4,13 +4,13 @@ import 'package:resume/constants.dart';
 
 class DateDisplay extends StatelessWidget {
   final DateTime? startDate;
-  final String? endDatePrefix;
+  final String? prefix;
   final DateTime? endDate;
   final Color color;
 
   const DateDisplay({
     this.startDate,
-    this.endDatePrefix,
+    this.prefix,
     this.endDate,
     required this.color,
     super.key,
@@ -26,40 +26,48 @@ class DateDisplay extends StatelessWidget {
     return DefaultTextStyle(
       style: TextTheme.of(context).labelMedium!
           .copyWith(fontFamily: 'Hack', color: color.strokeColor),
-      child: ClipRRect(
-        borderRadius: .circular(5),
-        child: DecoratedBox(
-          decoration: BoxDecoration(color: color, borderRadius: .circular(5)),
-          child: Padding(
-            padding: .all(padding),
-            child: Wrap(
-              children: [
-                Visibility(
-                  visible: startDate != null,
-                  child: Wrap(
-                    children: [
-                      Padding(
-                        padding: .only(right: spacing / 2),
-                        child: CustomPaint(
-                          painter: _ToPainter(
-                            padding: padding,
-                            arrowWidth: spacing / 3,
-                            color: darkerColor,
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: .circular(5),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: .circular(5),
+              ),
+              child: Padding(
+                padding: .all(padding),
+                child: Wrap(
+                  children: [
+                    Visibility(
+                      visible: startDate != null,
+                      child: Wrap(
+                        children: [
+                          Padding(
+                            padding: .only(right: spacing / 2),
+                            child: CustomPaint(
+                              painter: _ToPainter(
+                                padding: padding,
+                                arrowWidth: spacing / 3,
+                                color: darkerColor,
+                              ),
+                              child: Padding(
+                                padding: .only(right: spacing / 4),
+                                child: _DatePart(date: startDate, color: color),
+                              ),
+                            ),
                           ),
-                          child: Padding(
-                            padding: .only(right: spacing / 4),
-                            child: _DatePart(date: startDate, color: color),
-                          ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    _DatePart(date: endDate, color: color),
+                  ],
                 ),
-                _DatePart(date: endDate, prefix: endDatePrefix, color: color),
-              ],
+              ),
             ),
           ),
-        ),
+          Visibility(visible: prefix != null, child: Text(prefix ?? '', style: TextTheme.of(context).labelSmall)),
+        ],
       ),
     );
   }
@@ -67,10 +75,9 @@ class DateDisplay extends StatelessWidget {
 
 class _DatePart extends StatelessWidget {
   final DateTime? date;
-  final String? prefix;
   final Color color;
 
-  const _DatePart({this.date, this.prefix, required this.color});
+  const _DatePart({this.date, required this.color});
 
   @override
   Widget build(BuildContext context) {

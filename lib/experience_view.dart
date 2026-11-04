@@ -54,6 +54,7 @@ class ExperienceView extends StatelessWidget {
               children: [
                 DateDisplay(
                   color: color,
+                  prefix: E.datePrefix,
                   startDate: E.startDate,
                   endDate: E.endDate,
                 ),
