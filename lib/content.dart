@@ -15,7 +15,7 @@ final C = (
   phone: '7576520310',
   web: 'okkays.com',
   headlineTags: [
-    'Roomate of cat',
+    'Roommate of cat',
     'husband',
     'problem solver',
     'engineer',
@@ -23,9 +23,13 @@ final C = (
     'outdoor enthusiast',
   ],
   elevator: [
-    r"I've spent my ten-plus years in software working with both tech industry giants and public-sector groups leading, building, and mentoring technical teams in pursuit of simple, practical solutions to loosely-defined problems.",
+    r"I've spent my ten-plus years in software working with both tech industry giants and public-sector groups to lead, build, and mentor technical teams in pursuit of simple, practical solutions to loosely-defined problems.",
     r"",
-    r"I'd love to spend the next ten-plus years working with a good group of people to build simple, efficient tools and workflows that help others achieve their goals in a way that's socially and environmentally conscious.",
+    "For the past year, my wife and I (and our cat) took a Sabbatical to travel full time. We drove an RV we converted ourselves to the Arctic Ocean, ran/hiked over 2000km, XC skate and classic skied a few hundred more, descended a few dozen technical sandstone canyons, explored a few glaciers, enjoyed sunsets, and generally relished in the constant repairs, problem solving, and out-of-the-box thinking required from a life on the road.",
+    r"",
+    "We've finally reached the point where exploring new places, while still fun and exciting, doesn't feel like moving forward anymore, and we're ready to contribute to a community and build something lasting.",
+    r"",
+    r"That said, I'd love to spend my next ten-plus years working with a good group of people to build simple, efficient, maintainable tools and workflows that help others achieve their goals in a way that's economically, socially, and environmentally sustainable.",
   ],
   expertiseChips: [
     ["Vim"], // vim
@@ -41,7 +45,7 @@ final C = (
     ["a11y", "lighthouse"], // a11y
     ["git", "github", "circleci"], // devops
     ["proposal writing", "documentation"], // docs
-    ["interviewing", "cross-functional"], // company
+    ["interviewing", "cross functional"], // company
     ["debugging"], // general
     ["general it"],
   ],
@@ -62,39 +66,29 @@ final C = (
         r"Technical Lead for Nava's projects with the Department of Justice (ada.gov and civilrights.justice.gov) and Massachusetts' Department of Early Education and Care",
         r"- Worked daily with internal and client-side Directors, technical leadership, compliance, front-line personnel, and cross-disciplinary groups to gather requirements, identify gaps, brainstorm solutions, and build technical proposals that passed bureaucratic scrutiny.",
         r"- Led cross-disciplinary teams of four to over a dozen internal, vendor, and client staff to break down work, distribute tasks, and iterate.",
-        r"- As lead, I was the last stop for solving or working around any technical problem that arose, including working with clients to adjust timelines, debug software, systems, networking, etc. ",
-        r"- Participation in non-project bid work on top (and without disruption to) normal project responsibilities, including proposal writing, teaming, and technical challenge work resulting in awards like the $100M HHS SWIFT BPA.",
+        r"- As lead, I was the last stop for solving or working around any technical problem that arose, including working with clients and end-users to adjust timelines, debug software, systems, networking, etc. ",
+        r"- Participation in non-project bid work on top of (and without disruption to) normal project responsibilities, including proposal writing, teaming, and technical challenge work, contributing to awards such as the $100M HHS SWIFT BPA.",
         r"- Cross-project mentorship and participation in company-wide initiatives, hiring/interviewing, etc.",
       ],
     ),
     (
-      title: 'Raybeam/DEPT@Google',
+      title: 'Raybeam/DEPT @ Google',
       subtitle: 'Senior Software Engineer',
       startDate: DateTime(2015, 10),
       datePrefix: null,
       endDate: DateTime(2022, 12),
       location: 'Newburyport, MA',
       detail: [
-        "When I joined, Raybeam was a 20-odd person company tackling loosely-defined problems with a loosely-defined engineering workflow. When I left, we'd grown to 80+ people, learned, and evolved together. I played a key role in that evolution, especially with regards to our project work at Google, including:",
+        "When I joined, Raybeam was a 20-or-so person company tackling loosely-defined problems with a loosely-defined engineering workflow. When I left, we'd grown to 80+ people, learned, and evolved together. I played a key role in that evolution, especially with regards to our project work at Google, including:",
         "- Leading teams of four to fifteen people to design, produce, and deliver solutions used by hundreds of Google employees and vendors on a daily basis.",
         "- Achieving readability in Python, Typescript, Java, and AIP, making me the first person at Raybeam certified to submit and review Google code autonomously.",
         "- Mentoring, enabling, and advocating for teammates and engineers across our company to achieve the same level of ability and client trust.",
         "- Assembling, augmenting, and training teammates on a scalable framework for our projects, adhering to strict security and licensing constraints",
-        "- Implementing a rigorous, adaptable devops workflow across all Raybeam@Google project teams emphasizing small, logical changes and automated authoring, review, testing, deployment, and reporting",
+        "- Implementing a rigorous, adaptable devops workflow across all Raybeam@Google engineering teams emphasizing small, logical changes, with automated authoring, review, testing, deployment, and reporting",
+        r"",
         "I also regularly volunteered for and led initiatives designed to make our company an easier, more enjoyable, more rewarding place to work.",
       ],
     ),
-    // (
-    //   company: 'Sabbatical',
-    //   jobTitle: null,
-    //   startDate: DateTime(2025, 12),
-    //   endDate: null,
-    //   location: 'Europe, Canada, Alaska, Mountain states',
-    //   detail: [
-    //     "I took time off with my wife and cat to travel full time (public sector service work, while fulfilling, required us to be in the US). Spent our time driving to the Arctic Ocean, running/hiking over 2000km, XC skate and classic skiing a few hundred more, descending a few dozen technical canyons, exploring a few glaciers, enjoying sunsets, repairing and maintaining our own vehicle and gear, and generally enjoying the constant problem solving and out-of-the-box thinking required from a life on the road.",
-    //     "We've finally reached the point where exploring new places, while still fun and exciting, doesn't feel like moving forward anymore, and we're ready to contribute to a community and build something lasting.",
-    //   ],
-    // ),
   ],
   education: <Experience>[
     (

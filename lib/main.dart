@@ -57,7 +57,11 @@ class Resume extends StatefulWidget {
   State<Resume> createState() => _ResumeState();
 }
 
-final List<String> images = ['images/me.jpg', 'images/lua.png'];
+final List<String> images = [
+  'images/me.jpg',
+  'images/lua.png',
+  'images/code.png',
+];
 
 class _ResumeState extends State<Resume> {
   int selectedImage = 0;

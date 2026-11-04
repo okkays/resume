@@ -34,6 +34,7 @@ class ExperienceView extends StatelessWidget {
     );
 
     return Column(
+      crossAxisAlignment: .start,
       children: [
         columnIfMobileElseStack(
           isMobile: isMobile,
@@ -61,7 +62,6 @@ class ExperienceView extends StatelessWidget {
             ),
           ],
         ),
-        Row(children: []),
         Visibility(
           visible: E.detail.isNotEmpty,
           child: Divider(color: color),
