@@ -50,6 +50,7 @@ final C = (
     ["a11y", "lighthouse"], // a11y
     ["git", "github", "circleci"], // devops
     ["proposal writing", "documentation"], // docs
+    ["interviewing"], // company
     ["debugging"], // general
     ["general it"],
   ],

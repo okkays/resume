@@ -32,7 +32,7 @@ class DateDisplay extends StatelessWidget {
           decoration: BoxDecoration(color: color, borderRadius: .circular(5)),
           child: Padding(
             padding: .all(padding),
-            child: Row(
+            child: Wrap(
               children: [
                 Visibility(
                   visible: startDate != null,

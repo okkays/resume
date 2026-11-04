@@ -101,7 +101,7 @@ class _ResumeState extends State<Resume> {
         child: SingleChildScrollView(
           clipBehavior: .none,
           child: ConstrainedBox(
-            constraints: .new(maxWidth: 850),
+            constraints: .new(maxWidth: maxWidth),
             child: Padding(
               padding: .fromLTRB(lrPadding, tbPadding, lrPadding, tbPadding),
               child: SelectionArea(
@@ -209,7 +209,7 @@ class _ResumeState extends State<Resume> {
                                     Tag('etc', color: colorScheme.secondary),
                                   ],
                                 ),
-                                Divider(),
+                                Divider(color: colorScheme.tertiary),
                                 MarkdownBody(
                                   data: C.expertiseHeadline.join('\n'),
                                 ),
@@ -229,6 +229,7 @@ class _ResumeState extends State<Resume> {
                               icon: Icons.work_history,
                               child: ExperienceView(
                                 e,
+                                isMobile: isMobile,
                                 color: colorScheme.secondary,
                               ),
                             ),
@@ -287,40 +288,62 @@ class _ResumeState extends State<Resume> {
 class ExperienceView extends StatelessWidget {
   final Experience E;
   final Color color;
-  const ExperienceView(this.E, {required this.color, super.key});
+  final bool isMobile;
+  const ExperienceView(
+    this.E, {
+    required this.color,
+    required this.isMobile,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
+    final companyAndTitle = Center(
+      child: Column(
+        children: [
+          FittedBox(
+            fit: .fitWidth,
+            child: Text(E.company, style: TextTheme.of(context).titleLarge),
+          ),
+          Visibility(
+            visible: E.jobTitle != null,
+            child: FittedBox(fit: .fitWidth, child: Text(E.jobTitle ?? '')),
+          ),
+        ],
+      ),
+    );
+
+    return Column(
       children: [
-        IntrinsicHeight(
-          child: Row(
-            children: [
-              Text(E.company, style: TextTheme.of(context).titleLarge),
-              Visibility(visible: E.jobTitle != null, child: verticalDivider),
-              Visibility(
-                visible: E.jobTitle != null,
-                child: Text(E.jobTitle ?? ''),
-              ),
-            ],
-          ),
+        columnIfMobileElseStack(
+          isMobile: isMobile,
+          alignmentIfColumn: .center,
+          alignmentIfStack: .center,
+          spacingIfColumn: spacing / 4,
+          children: [
+            isMobile
+                ? companyAndTitle
+                : Padding(
+                    padding: .only(left: maxWidth / 5, right: maxWidth / 5),
+                    child: companyAndTitle,
+                  ),
+            OverflowBar(
+              alignment: .spaceBetween,
+              overflowSpacing: spacing / 4,
+              children: [
+                DateDisplay(
+                  color: color,
+                  startDate: E.startDate,
+                  endDate: E.endDate,
+                ),
+                Tag(E.location, color: color),
+              ],
+            ),
+          ],
         ),
-        IntrinsicHeight(
-          child: Row(
-            children: [
-              DateDisplay(
-                color: color,
-                startDate: E.startDate,
-                endDate: E.endDate,
-              ),
-              verticalDivider,
-              Text(E.location),
-            ],
-          ),
-        ),
-        Row(
-          children: [Expanded(child: MarkdownBody(data: E.detail.join('\n')))],
-        ),
+        Row(children: []),
+        Divider(color: color),
+        MarkdownBody(data: E.detail.join('\n')),
       ],
     );
   }

@@ -4,6 +4,8 @@ import 'package:gruvbox_color_scheme/gruvbox_color_scheme.dart';
 
 const double spacing = 20;
 
+const double maxWidth = 850;
+
 final onDarkColor = GruvboxColorScheme.light.onPrimary;
 final onLightColor = GruvboxColorScheme.dark.onPrimary;
 
@@ -27,3 +29,19 @@ const verticalDivider = VerticalDivider(
   color: Colors.grey,
 );
 
+Widget columnIfMobileElseStack({
+  required MainAxisAlignment alignmentIfColumn,
+  required AlignmentGeometry alignmentIfStack,
+  required double spacingIfColumn,
+  required List<Widget> children,
+  required bool isMobile,
+}) {
+  if (isMobile) {
+    return Column(
+      spacing: spacingIfColumn,
+      mainAxisAlignment: alignmentIfColumn,
+      children: children,
+    );
+  }
+  return Stack(alignment: alignmentIfStack, children: children);
+}
