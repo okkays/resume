@@ -2,12 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:gruvbox_color_scheme/gruvbox_color_scheme.dart';
 
+
 const double spacing = 20;
 
 const double maxWidth = 850;
 
 final onDarkColor = GruvboxColorScheme.light.onPrimary;
 final onLightColor = GruvboxColorScheme.dark.onPrimary;
+
+final lightTheme = ThemeData(
+  fontFamily: 'Lato',
+  colorScheme: GruvboxColorScheme.light,
+);
+
+final darkTheme = ThemeData(
+  fontFamily: 'Lato',
+  colorScheme: GruvboxColorScheme.dark,
+);
 
 MarkdownStyleSheet markdownBodyAs(
   BuildContext context,
