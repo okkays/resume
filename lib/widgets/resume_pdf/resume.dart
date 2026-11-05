@@ -7,6 +7,8 @@ import 'package:resume/constants.dart';
 import 'package:resume/widgets/resume/tag.dart';
 import 'package:collection/collection.dart';
 import 'package:resume/widgets/resume/experience_view.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class Resume extends StatefulWidget {
   final ValueChanged<Brightness> onBrightnessChanged;

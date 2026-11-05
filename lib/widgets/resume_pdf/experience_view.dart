@@ -4,6 +4,8 @@ import 'package:resume/content.dart';
 import 'package:resume/widgets/resume/date_display.dart';
 import 'package:resume/constants.dart';
 import 'package:resume/widgets/resume/tag.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class ExperienceView extends StatelessWidget {
   final Experience E;

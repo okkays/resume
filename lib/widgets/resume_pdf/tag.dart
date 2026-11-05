@@ -1,22 +1,28 @@
-import 'package:flutter/material.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart';
 import 'package:resume/constants.dart';
 
-class Tag extends StatelessWidget {
+class PdfTag extends StatelessWidget {
   final String content;
-  final Color color;
-  const Tag(this.content, {required this.color, super.key});
+  final PdfColor color;
+  PdfTag(this.content, {required this.color});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(Context context) {
     return DecoratedBox(
-      decoration: BoxDecoration(color: color, borderRadius: .circular(5)),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(5),
+      ),
       child: Padding(
-        padding: .all(3),
+        padding: EdgeInsets.all(3),
         child: Text(
           content,
           softWrap: true,
-          style: TextTheme.of(context).labelMedium!
-              .copyWith(fontFamily: 'Hack', color: color.strokeColor),
+          style: pdfTextThemes(context)['labelMedium']!.copyWith(
+            // fontFamily: 'Hack',
+            color: color.strokeColor,
+          ),
         ),
       ),
     );
