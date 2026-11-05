@@ -27,7 +27,7 @@ class _ResumeAppState extends State<ResumeApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kevin Kays - Resume',
+      title: 'Kevin Kays',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeMode,
