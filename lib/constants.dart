@@ -45,3 +45,10 @@ Widget columnIfMobileElseStack({
   }
   return Stack(alignment: alignmentIfStack, children: children);
 }
+
+final List<String> images = [
+  'images/me.jpg',
+  'images/lua.png',
+  'images/code.png',
+];
+
