@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ResumeLink extends StatelessWidget {
   final String href;
@@ -18,21 +19,22 @@ class ResumeLink extends StatelessWidget {
       uri = Uri.https(href);
     }
 
-    return Column(
-      children: [
-        Link(
-          uri: uri,
-          target: .blank,
-          builder: (context, _) => Text(
-            label,
-            style: TextTheme.of(context).bodyMedium!.copyWith(
-              color: Theme.of(context).brightness == .dark
-                  ? Colors.amber
-                  : Colors.indigo,
-            ),
-          ),
+    return InkWell(
+      child: Text(
+        label,
+        style: TextTheme.of(context).bodyMedium!.copyWith(
+          color: Theme.of(context).brightness == .dark
+              ? Colors.amber
+              : Colors.indigo,
         ),
-      ],
+      ),
+      onTap: () => launchUrl(uri),
     );
+  }
+}
+
+Future<void> onTapLink(String text, String? href, String title) async {
+  if (href != null) {
+    await launchUrl(Uri.parse(href));
   }
 }

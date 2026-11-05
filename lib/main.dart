@@ -101,77 +101,150 @@ class _ResumeState extends State<Resume> {
     );
 
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          clipBehavior: .none,
-          child: ConstrainedBox(
-            constraints: .new(maxWidth: maxWidth),
+      body: SingleChildScrollView(
+        clipBehavior: .none,
+        child: SelectionArea(
+          child: Center(
             child: Padding(
-              padding: .fromLTRB(lrPadding, tbPadding, lrPadding, tbPadding),
-              child: SelectionArea(
-                child: Column(
-                  spacing: spacing,
-                  children: [
-                    Visibility(visible: isMobile, child: W.avatar),
-                    IntrinsicHeight(
-                      child: Row(
-                        spacing: spacing / 2,
-                        crossAxisAlignment: isMobile ? .start : .stretch,
-                        children: [
-                          Visibility(visible: isDesktop, child: W.avatar),
-                          Expanded(
-                            child: Padding(
-                              padding: .only(right: spacing / 2),
-                              child: Column(
-                                spacing: spacing / 2,
-                                mainAxisAlignment: .center,
-                                crossAxisAlignment: isDesktop
-                                    ? .start
-                                    : .stretch,
-                                children: [
-                                  Text(C.name, style: textTheme.headlineMedium),
-                                  FittedBox(
-                                    fit: .fitWidth,
-                                    child: Text(
-                                      C.jobTitle,
-                                      style: textTheme.headlineSmall,
+              padding: .only(left: spacing, right: spacing),
+              child: ConstrainedBox(
+                constraints: .new(maxWidth: maxWidth),
+                child: Padding(
+                  padding: .fromLTRB(
+                    lrPadding,
+                    tbPadding,
+                    lrPadding,
+                    tbPadding,
+                  ),
+                  child: Column(
+                    spacing: spacing,
+                    children: [
+                      Visibility(visible: isMobile, child: W.avatar),
+                      IntrinsicHeight(
+                        child: Row(
+                          spacing: spacing / 2,
+                          crossAxisAlignment: isMobile ? .start : .stretch,
+                          children: [
+                            Visibility(visible: isDesktop, child: W.avatar),
+                            Expanded(
+                              child: Padding(
+                                padding: .only(right: spacing / 2),
+                                child: Column(
+                                  spacing: spacing / 2,
+                                  mainAxisAlignment: .center,
+                                  crossAxisAlignment: isDesktop
+                                      ? .start
+                                      : .stretch,
+                                  children: [
+                                    Text(
+                                      C.name,
+                                      style: textTheme.headlineMedium,
                                     ),
-                                  ),
-                                  FittedBox(
-                                    fit: .fitWidth,
-                                    child: IntrinsicHeight(
-                                      child: Row(
-                                        children: [
-                                          ResumeLink(
-                                            label: C.email,
-                                            href: 'mailto:${C.email}',
-                                          ),
-                                          verticalDivider,
-                                          ResumeLink(
-                                            label: [
-                                              C.phone.substring(0, 3),
-                                              C.phone.substring(3, 6),
-                                              C.phone.substring(6),
-                                            ].join('.'),
-                                            href: 'tel:${C.phone}',
-                                          ),
-                                          verticalDivider,
-                                          ResumeLink(label: C.web, href: C.web),
-                                        ],
+                                    FittedBox(
+                                      fit: .fitWidth,
+                                      child: Text(
+                                        C.jobTitle,
+                                        style: textTheme.headlineSmall,
                                       ),
                                     ),
-                                  ),
+                                    FittedBox(
+                                      fit: .fitWidth,
+                                      child: IntrinsicHeight(
+                                        child: Row(
+                                          children: [
+                                            ResumeLink(
+                                              label: C.email,
+                                              href: 'mailto:${C.email}',
+                                            ),
+                                            verticalDivider,
+                                            ResumeLink(
+                                              label: [
+                                                C.phone.substring(0, 3),
+                                                C.phone.substring(3, 6),
+                                                C.phone.substring(6),
+                                              ].join('.'),
+                                              href: 'tel:${C.phone}',
+                                            ),
+                                            verticalDivider,
+                                            ResumeLink(
+                                              label: C.web,
+                                              href: C.web,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Wrap(
+                                      spacing: spacing / 2,
+                                      runSpacing: spacing / 2,
+                                      children: [
+                                        ...C.headlineTags.map(
+                                          (h) => Tag(
+                                            h.toLowerCase().replaceAll(
+                                              ' ',
+                                              '_',
+                                            ),
+                                            color: colorScheme.secondary,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: IconBox(
+                              label: 'About me',
+                              color: colorScheme.primary,
+                              icon: Icons.elevator,
+                              child: MarkdownBody(data: C.elevator.join('\n')),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: IconBox(
+                              label: 'Skillset',
+                              color: colorScheme.tertiary,
+                              icon: Icons.handyman_outlined,
+                              child: Column(
+                                crossAxisAlignment: .stretch,
+                                spacing: spacing / 2,
+                                children: [
                                   Wrap(
                                     spacing: spacing / 2,
                                     runSpacing: spacing / 2,
+                                    crossAxisAlignment: .start,
                                     children: [
-                                      ...C.headlineTags.map(
-                                        (h) => Tag(
-                                          h.toLowerCase().replaceAll(' ', '_'),
-                                          color: colorScheme.secondary,
+                                      ...C.expertiseChips.expandIndexed(
+                                        (i, chips) => chips.map(
+                                          (c) => Tag(
+                                            c.toLowerCase().replaceAll(
+                                              ' ',
+                                              '_',
+                                            ),
+                                            color: [
+                                              colorScheme.primary,
+                                              // colorScheme.secondary,
+                                              colorScheme.tertiary,
+                                            ][i % 2],
+                                          ),
                                         ),
                                       ),
+                                      Tag('etc', color: colorScheme.secondary),
                                     ],
+                                  ),
+                                  Divider(color: colorScheme.tertiary),
+                                  MarkdownBody(
+                                    data: C.expertiseHeadline.join('\n'),
                                   ),
                                 ],
                               ),
@@ -179,113 +252,61 @@ class _ResumeState extends State<Resume> {
                           ),
                         ],
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: IconBox(
-                            label: 'About me',
-                            color: colorScheme.primary,
-                            icon: Icons.elevator,
-                            child: MarkdownBody(data: C.elevator.join('\n')),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: IconBox(
-                            label: 'Skillset',
-                            color: colorScheme.tertiary,
-                            icon: Icons.handyman_outlined,
-                            child: Column(
-                              crossAxisAlignment: .stretch,
-                              spacing: spacing / 2,
-                              children: [
-                                Wrap(
-                                  spacing: spacing / 2,
-                                  runSpacing: spacing / 2,
-                                  crossAxisAlignment: .start,
-                                  children: [
-                                    ...C.expertiseChips.expandIndexed(
-                                      (i, chips) => chips.map(
-                                        (c) => Tag(
-                                          c.toLowerCase().replaceAll(' ', '_'),
-                                          color: [
-                                            colorScheme.primary,
-                                            // colorScheme.secondary,
-                                            colorScheme.tertiary,
-                                          ][i % 2],
-                                        ),
-                                      ),
-                                    ),
-                                    Tag('etc', color: colorScheme.secondary),
-                                  ],
-                                ),
-                                Divider(color: colorScheme.tertiary),
-                                MarkdownBody(
-                                  data: C.expertiseHeadline.join('\n'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    ...C.experience.map(
-                      (e) => Row(
-                        children: [
-                          Expanded(
-                            child: IconBox(
-                              color: colorScheme.secondary,
-                              label: 'Past Experience',
-                              icon: Icons.work_history,
-                              child: ExperienceView(
-                                e,
-                                isMobile: isMobile,
+                      ...C.experience.map(
+                        (e) => Row(
+                          children: [
+                            Expanded(
+                              child: IconBox(
                                 color: colorScheme.secondary,
+                                label: 'Past Experience',
+                                icon: Icons.work_history,
+                                child: ExperienceView(
+                                  e,
+                                  isMobile: isMobile,
+                                  color: colorScheme.secondary,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    ...C.education.map(
-                      (e) => Row(
-                        children: [
-                          Expanded(
-                            child: IconBox(
-                              color: colorScheme.tertiary,
-                              label: 'Education',
-                              icon: Icons.work_history,
-                              child: ExperienceView(
-                                isMobile: isMobile,
-                                e,
+                      ...C.education.map(
+                        (e) => Row(
+                          children: [
+                            Expanded(
+                              child: IconBox(
                                 color: colorScheme.tertiary,
+                                label: 'Education',
+                                icon: Icons.work_history,
+                                child: ExperienceView(
+                                  isMobile: isMobile,
+                                  e,
+                                  color: colorScheme.tertiary,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    MarkdownBody(data: C.references),
+                      MarkdownBody(data: C.references),
 
-                    OverflowBar(
-                      alignment: .spaceEvenly,
-                      children: C.attributions
-                          .map(
-                            (e) => MarkdownBody(
-                              data: e,
-                              styleSheet: markdownBodyAs(
-                                context,
-                                (t) => t.labelMedium!,
+                      SelectionContainer.disabled(child: OverflowBar(
+                        alignment: .spaceEvenly,
+                        children: C.attributions
+                            .map(
+                              (e) => MarkdownBody(
+                                data: e,
+                                styleSheet: markdownBodyAs(
+                                  context,
+                                  (t) => t.labelMedium!,
+                                ),
+                                onTapLink: onTapLink,
                               ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ],
+                            )
+                            .toList(),
+                      )),
+                    ],
+                  ),
                 ),
               ),
             ),
