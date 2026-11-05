@@ -114,7 +114,6 @@ final C = (
       ],
     ),
   ],
-  references: '_references available upon request_',
   attributions: [
     'colors: [gruvbox.org](https://gruvbox/)',
     'regular font: [lato](https://www.latofonts.com/)',
