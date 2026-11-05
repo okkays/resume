@@ -3,6 +3,7 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:resume/brightness_toggle.dart';
 import 'package:resume/content.dart';
 import 'package:resume/icon_box.dart';
+import 'package:resume/link.dart';
 import 'package:resume/theme.dart';
 import 'package:resume/constants.dart';
 import 'package:resume/tag.dart';
@@ -141,11 +142,21 @@ class _ResumeState extends State<Resume> {
                                     child: IntrinsicHeight(
                                       child: Row(
                                         children: [
-                                          Text(C.email),
+                                          ResumeLink(
+                                            label: C.email,
+                                            href: 'mailto:${C.email}',
+                                          ),
                                           verticalDivider,
-                                          Text(C.phone),
+                                          ResumeLink(
+                                            label: [
+                                              C.phone.substring(0, 3),
+                                              C.phone.substring(3, 6),
+                                              C.phone.substring(6),
+                                            ].join('.'),
+                                            href: 'tel:${C.phone}',
+                                          ),
                                           verticalDivider,
-                                          Text(C.web),
+                                          ResumeLink(label: C.web, href: C.web),
                                         ],
                                       ),
                                     ),
