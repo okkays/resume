@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:resume/content.dart';
-import 'package:resume/date_display.dart';
+import 'package:resume/widgets/date_display.dart';
 import 'package:resume/constants.dart';
-import 'package:resume/tag.dart';
+import 'package:resume/widgets/tag.dart';
 
 class ExperienceView extends StatelessWidget {
   final Experience E;

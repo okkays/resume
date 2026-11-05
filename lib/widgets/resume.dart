@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:resume/content.dart';
-import 'package:resume/icon_box.dart';
-import 'package:resume/link.dart';
+import 'package:resume/widgets/icon_box.dart';
+import 'package:resume/widgets/link.dart';
 import 'package:resume/constants.dart';
-import 'package:resume/tag.dart';
+import 'package:resume/widgets/tag.dart';
 import 'package:collection/collection.dart';
-import 'package:resume/experience_view.dart';
+import 'package:resume/widgets/experience_view.dart';
 
 class Resume extends StatefulWidget {
   final ValueChanged<Brightness> onBrightnessChanged;

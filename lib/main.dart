@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:resume/brightness_toggle.dart';
-import 'package:resume/pdf_button.dart';
+import 'package:resume/widgets/brightness_toggle.dart';
+import 'package:resume/widgets/pdf_button.dart';
 import 'package:resume/theme.dart';
 import 'package:resume/constants.dart';
-import 'package:resume/resume.dart';
+import 'package:resume/widgets/resume.dart';
 
 void main() {
   runApp(const ResumeApp());
