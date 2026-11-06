@@ -86,14 +86,15 @@ class _PdfButtonState extends State<PdfButton> {
 
             var savedFile = await pdf.save();
             List<int> fileInts = List.from(savedFile);
-            web.HTMLAnchorElement()
+            final link = web.HTMLAnchorElement()
               ..href =
                   "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(fileInts)}"
-              ..setAttribute(
-                "download",
-                "${DateTime.now().millisecondsSinceEpoch}.pdf",
-              )
-              ..click();
+              ..setAttribute("download", "Kevin Kays - Resume.pdf")
+              ..setAttribute("target", "_blank")
+              ..setAttribute("type", "hidden");
+            web.document.body?.appendChild(link);
+            link.dispatchEvent(web.MouseEvent('click', .new(bubbles: true, cancelable: true, view: web.window)));
+            link.remove();
 
             setState(() {
               icon = Icons.save;
