@@ -25,11 +25,11 @@ final C = (
   elevator: [
     r"I've spent my ten-plus years in software working with both tech industry giants and public-sector groups to lead, build, and mentor technical teams in pursuit of simple, practical solutions to loosely-defined problems.",
     r"",
-    "For the past year, my wife and I (and our cat) took a Sabbatical to travel full time. We drove an RV we converted ourselves to the Arctic Ocean, ran/hiked over 2000km, XC skate and classic skied a few hundred more, descended a few dozen technical sandstone canyons, explored a few glaciers, enjoyed sunsets, and generally relished in the constant repairs, problem solving, and out-of-the-box thinking required from a life on the road.",
+    "After a decade of building for groups like Google, the Department of Justice, and the State of Massachusetts, my wife and I (and our cat) took a Sabbatical to travel full time. We drove an RV we converted ourselves to the Arctic Ocean, ran/hiked over 2000km, XC skate and classic skied a few hundred more, descended a few dozen technical sandstone canyons, explored a few glaciers, enjoyed sunsets, and generally relished in the constant repairs, problem solving, and out-of-the-box thinking required from a life on the road.",
     r"",
     "We've finally reached the point where exploring new places, while still fun and exciting, doesn't feel like moving forward anymore, and we're ready to contribute to a community and build something lasting.",
     r"",
-    r"That said, I'd love to spend my next ten-plus years working with a good group of people to build simple, efficient, maintainable tools and workflows that help others achieve their goals in a way that's economically, socially, and environmentally sustainable.",
+    r"I'd love to spend my next ten-plus years working with a good group of people to build simple, efficient, maintainable tools and workflows that help others achieve their goals in a way that's economically, socially, and environmentally sustainable.",
   ],
   expertiseChips: [
     ["Vim"], // vim
