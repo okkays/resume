@@ -115,7 +115,7 @@ final C = (
     ),
   ],
   attributions: [
-    'colors: [gruvbox.org](https://gruvbox/)',
+    'colors: [gruvbox.org](https://gruvbox.org/)',
     'regular font: [lato](https://www.latofonts.com/)',
     'monospace font: [sourcefoundry:hack](https://sourcefoundry.org/hack/)',
     'written by hand in dart/flutter',
