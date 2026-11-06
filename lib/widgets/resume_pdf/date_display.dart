@@ -2,15 +2,21 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:resume/pdf_constants.dart';
-import 'package:resume/constants.dart';
 
 class DateDisplay extends StatelessWidget {
   final DateTime? startDate;
   final String? prefix;
   final DateTime? endDate;
   final Color color;
+  final Color backgroundColor;
 
-  DateDisplay({this.startDate, this.prefix, this.endDate, required this.color});
+  DateDisplay({
+    this.startDate,
+    this.prefix,
+    this.endDate,
+    required this.color,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class DateDisplay extends StatelessWidget {
 
     return DefaultTextStyle(
       style: textThemes(
-        context,
+        backgroundColor.strokeColor,
       )['labelMediumMono']!.copyWith(color: color.strokeColor),
       child: Column(
         children: [
@@ -77,9 +83,9 @@ class DateDisplay extends StatelessWidget {
               : [
                   Text(
                     prefix!,
-                    style: textThemes(context)['labelSmall']!.copyWith(
-                      color: ofBackgroundColor(context).strokeColor,
-                    ),
+                    style:
+                        textThemes(backgroundColor.strokeColor)['labelSmall']!
+                            .copyWith(color: backgroundColor.strokeColor),
                   ),
                 ]),
         ],

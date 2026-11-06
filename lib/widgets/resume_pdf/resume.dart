@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' as mat;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -10,15 +11,19 @@ import 'package:collection/collection.dart';
 import 'package:resume/widgets/resume_pdf/experience_view.dart';
 
 class Resume extends StatelessWidget {
+  final mat.ColorScheme colorScheme;
+  final PdfColor backgroundColor;
   final Uint8List image;
-  Resume({required this.image});
+  Resume({
+    required this.image,
+    required this.colorScheme,
+    required this.backgroundColor,
+  });
 
   final int selectedImage = 0;
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = ofColorScheme(context);
-
     final avatar = ClipRRect(
       horizontalRadius: 20,
       verticalRadius: 20,
@@ -26,7 +31,7 @@ class Resume extends StatelessWidget {
     );
 
     return DecoratedBox(
-      decoration: BoxDecoration(color: ofBackgroundColor(context)),
+      decoration: BoxDecoration(color: backgroundColor),
       child: Padding(
         padding: EdgeInsets.all(0.25 * PdfPageFormat.inch),
         child: Column(
@@ -54,13 +59,17 @@ class Resume extends StatelessWidget {
                             children: [
                               Text(
                                 C.name,
-                                style: textThemes(context)['headlineMedium'],
+                                style: textThemes(
+                                  backgroundColor.strokeColor,
+                                )['headlineMedium'],
                               ),
                               FittedBox(
                                 fit: .fitWidth,
                                 child: Text(
                                   C.jobTitle,
-                                  style: textThemes(context)['headlineSmall'],
+                                  style: textThemes(
+                                    backgroundColor.strokeColor,
+                                  )['headlineSmall'],
                                 ),
                               ),
                               FittedBox(
@@ -70,6 +79,7 @@ class Resume extends StatelessWidget {
                                     ResumeLink(
                                       label: C.email,
                                       href: 'mailto:${C.email}',
+                                      backgroundColor: backgroundColor,
                                     ),
                                     verticalDivider,
                                     ResumeLink(
@@ -79,9 +89,14 @@ class Resume extends StatelessWidget {
                                         C.phone.substring(6),
                                       ].join('.'),
                                       href: 'tel:${C.phone}',
+                                      backgroundColor: backgroundColor,
                                     ),
                                     verticalDivider,
-                                    ResumeLink(label: C.web, href: C.web),
+                                    ResumeLink(
+                                      label: C.web,
+                                      href: C.web,
+                                      backgroundColor: backgroundColor,
+                                    ),
                                   ],
                                 ),
                               ),
@@ -112,8 +127,12 @@ class Resume extends StatelessWidget {
                     child: IconBox(
                       label: 'About me',
                       color: fromColor(colorScheme.primary),
+                      backgroundColor: backgroundColor,
                       icon: Icons.elevator,
-                      child: MarkdownBody(data: C.elevator.join('\n')),
+                      child: MarkdownBody(
+                        backgroundColor: backgroundColor,
+                        data: C.elevator.join('\n'),
+                      ),
                     ),
                   ),
                 ],
@@ -125,6 +144,7 @@ class Resume extends StatelessWidget {
                     child: IconBox(
                       label: 'Skillset',
                       color: fromColor(colorScheme.tertiary),
+                      backgroundColor: backgroundColor,
                       icon: Icons.handyman_outlined,
                       child: Column(
                         crossAxisAlignment: .stretch,
@@ -155,7 +175,10 @@ class Resume extends StatelessWidget {
                               ],
                             ),
                             Divider(color: fromColor(colorScheme.tertiary)),
-                            MarkdownBody(data: C.expertiseHeadline.join('\n')),
+                            MarkdownBody(
+                              backgroundColor: backgroundColor,
+                              data: C.expertiseHeadline.join('\n'),
+                            ),
                           ],
                         ),
                       ),
@@ -169,12 +192,14 @@ class Resume extends StatelessWidget {
                 children: [
                   Expanded(
                     child: IconBox(
+                      backgroundColor: backgroundColor,
                       color: fromColor(colorScheme.tertiary),
                       label: 'Education',
                       icon: Icons.work_history,
                       child: ExperienceView(
                         C.education.first,
                         color: fromColor(colorScheme.tertiary),
+                        backgroundColor: backgroundColor,
                       ),
                     ),
                   ),
@@ -186,12 +211,14 @@ class Resume extends StatelessWidget {
                   children: [
                     Expanded(
                       child: IconBox(
+                        backgroundColor: backgroundColor,
                         color: fromColor(colorScheme.secondary),
                         label: 'Past Experience',
                         icon: Icons.work_history,
                         child: ExperienceView(
                           e,
                           color: fromColor(colorScheme.secondary),
+                          backgroundColor: backgroundColor,
                         ),
                       ),
                     ),
@@ -206,12 +233,14 @@ class Resume extends StatelessWidget {
                       children: [
                         Expanded(
                           child: IconBox(
+                            backgroundColor: backgroundColor,
                             color: fromColor(colorScheme.tertiary),
                             label: 'Education',
                             icon: Icons.work_history,
                             child: ExperienceView(
                               e,
                               color: fromColor(colorScheme.tertiary),
+                              backgroundColor: backgroundColor,
                             ),
                           ),
                         ),

@@ -6,22 +6,21 @@ class IconBox extends StatelessWidget {
   final Widget child;
   final String? label;
   final Color? color;
-  final Color? backgroundColor;
+  final Color backgroundColor;
 
   IconBox({
     this.label,
     required this.icon,
     required this.child,
     this.color,
-    this.backgroundColor,
+    required this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = textThemes(context)['bodyMedium']!;
+    final textTheme = textThemes(backgroundColor.strokeColor)['bodyMedium']!;
     final iconSize = textTheme.fontSize! * 2;
     final color = this.color ?? textTheme.color!;
-    final backgroundColor = this.backgroundColor ?? ofBackgroundColor(context);
 
     return DecoratedBox(
       decoration: BoxDecoration(

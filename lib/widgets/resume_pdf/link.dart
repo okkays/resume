@@ -4,8 +4,13 @@ import 'package:resume/pdf_constants.dart';
 class ResumeLink extends StatelessWidget {
   final String href;
   final String label;
+  final Color backgroundColor;
 
-  ResumeLink({required this.label, required this.href});
+  ResumeLink({
+    required this.label,
+    required this.href,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +26,9 @@ class ResumeLink extends StatelessWidget {
     return UrlLink(
       child: Text(
         label,
-        style: textThemes(context)['bodyMedium']!.copyWith(
-          color: ofBrightness(context) == .dark ? Colors.amber : Colors.indigo,
-        ),
+        style: textThemes(
+          backgroundColor.luminance > 0.4 ? Colors.indigo : Colors.amber,
+        )['bodyMedium']!,
       ),
       destination: uri.toString(),
     );

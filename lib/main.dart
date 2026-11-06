@@ -19,7 +19,6 @@ void main() async {
   );
   pdf.fonts['bold'] = .ttf(await rootBundle.load('fonts/Lato-Semibold.ttf'));
   pdf.fonts['icons'] = await PdfGoogleFonts.materialIcons();
-
 }
 
 class ResumeApp extends StatefulWidget {
@@ -31,16 +30,19 @@ class ResumeApp extends StatefulWidget {
 
 class _ResumeAppState extends State<ResumeApp> {
   ThemeMode themeMode = .system;
+  Brightness? brightness;
 
   void onBrightnessChanged(Brightness newBrightness) {
     switch (newBrightness) {
       case .light:
         setState(() {
           themeMode = .light;
+          brightness = .light;
         });
       case .dark:
         setState(() {
           themeMode = .dark;
+          brightness = .dark;
         });
     }
   }
@@ -88,7 +90,11 @@ class _ResumeAppState extends State<ResumeApp> {
               initialBrightness: MediaQuery.of(context).platformBrightness,
               onChanged: onBrightnessChanged,
             ),
-            PdfButton(widgetToExport: resume),
+            PdfButton(
+              widgetToExport: resume,
+              brightness:
+                  brightness ?? MediaQuery.of(context).platformBrightness,
+            ),
           ],
         ),
       ),

@@ -18,9 +18,7 @@ class Tag extends StatelessWidget {
         child: Text(
           content,
           softWrap: true,
-          style: textThemes(
-            context,
-          )['labelMediumMono']!.copyWith(color: color.strokeColor),
+          style: textThemes(color.strokeColor)['labelMediumMono']!,
         ),
       ),
     );

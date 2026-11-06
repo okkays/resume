@@ -8,7 +8,8 @@ import 'package:resume/widgets/resume_pdf/tag.dart';
 class ExperienceView extends StatelessWidget {
   final Experience E;
   final Color color;
-  ExperienceView(this.E, {required this.color});
+  final Color backgroundColor;
+  ExperienceView(this.E, {required this.color, required this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,22 @@ class ExperienceView extends StatelessWidget {
         children: [
           FittedBox(
             fit: .fitWidth,
-            child: Text(E.title, style: textThemes(context)['titleLarge']),
+            child: Text(
+              E.title,
+              style: textThemes(backgroundColor.strokeColor)['titleLarge'],
+            ),
           ),
           ...(E.subtitle == null
               ? []
-              : [FittedBox(fit: .fitWidth, child: Text(E.subtitle ?? ''))]),
+              : [
+                  FittedBox(
+                    fit: .fitWidth,
+                    child: Text(
+                      E.subtitle ?? '',
+                      style: TextStyle(color: backgroundColor.strokeColor),
+                    ),
+                  ),
+                ]),
         ],
       ),
     );
@@ -41,6 +53,7 @@ class ExperienceView extends StatelessWidget {
               crossAxisAlignment: .center,
               children: [
                 DateDisplay(
+                  backgroundColor: backgroundColor,
                   color: color,
                   prefix: E.datePrefix,
                   startDate: E.startDate,
@@ -52,7 +65,14 @@ class ExperienceView extends StatelessWidget {
           ],
         ),
         ...(E.detail.isEmpty ? [] : [Divider(color: color)]),
-        ...(E.detail.isEmpty ? [] : [MarkdownBody(data: E.detail.join('\n'))]),
+        ...(E.detail.isEmpty
+            ? []
+            : [
+                MarkdownBody(
+                  backgroundColor: backgroundColor,
+                  data: E.detail.join('\n'),
+                ),
+              ]),
       ],
     );
   }

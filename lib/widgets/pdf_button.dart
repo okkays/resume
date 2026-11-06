@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:printing/printing.dart';
+import 'package:resume/constants.dart';
 import 'package:resume/pdf_constants.dart' as pc;
 import 'package:resume/widgets/resume_pdf/resume.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -10,8 +10,13 @@ import 'package:web/web.dart' as web;
 
 class PdfButton extends StatefulWidget {
   final Widget widgetToExport;
+  final Brightness brightness;
 
-  const PdfButton({super.key, required this.widgetToExport});
+  const PdfButton({
+    super.key,
+    required this.widgetToExport,
+    required this.brightness,
+  });
 
   @override
   State<StatefulWidget> createState() => _PdfButtonState();
@@ -30,6 +35,10 @@ class _PdfButtonState extends State<PdfButton> {
               icon = Icons.hourglass_top;
             });
 
+            final backgroundColor = widget.brightness == .light
+                ? pc.fromColor(lightTheme.scaffoldBackgroundColor)
+                : pc.fromColor(darkTheme.scaffoldBackgroundColor);
+
             final img = await rootBundle.load('images/me.jpg');
             final pw.ThemeData theme =
                 .withFont(
@@ -40,7 +49,7 @@ class _PdfButtonState extends State<PdfButton> {
                   icons: pc.fonts['icons'],
                 ).copyWith(
                   bulletStyle: pc
-                      .textThemes(null)['bodyMedium']!
+                      .textThemes(backgroundColor.strokeColor)['bodyMedium']!
                       .copyWith(lineSpacing: 0),
                 );
 
@@ -61,9 +70,17 @@ class _PdfButtonState extends State<PdfButton> {
                   margin: pw.EdgeInsets.all(0),
                   textDirection: .ltr,
                   buildBackground: (context) =>
-                      pw.Container(color: pc.ofBackgroundColor(context)),
+                      pw.Container(color: backgroundColor),
                 ),
-                build: (context) => [Resume(image: img.buffer.asUint8List())],
+                build: (context) => [
+                  Resume(
+                    backgroundColor: backgroundColor,
+                    colorScheme: widget.brightness == .light
+                        ? lightTheme.colorScheme
+                        : darkTheme.colorScheme,
+                    image: img.buffer.asUint8List(),
+                  ),
+                ],
               ),
             );
 

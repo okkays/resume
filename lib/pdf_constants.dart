@@ -89,8 +89,9 @@ double scaleFontSize(double value) {
   return 0.75 * value;
 }
 
-Map<String, TextStyle> textThemes(BuildContext? context) {
+Map<String, TextStyle> textThemes(Color color) {
   final style = TextStyle(
+    color: color,
     font: fonts['base'],
     fontNormal: fonts['base'],
     fontBold: fonts['bold'],
@@ -146,26 +147,23 @@ Map<String, TextStyle> textThemes(BuildContext? context) {
   };
 }
 
-mat.Brightness ofBrightness(BuildContext context) => mat.Brightness.light;
-mat.ColorScheme ofColorScheme(BuildContext context) => lightTheme.colorScheme;
 double ofWidth(BuildContext context) => context.page.pageFormat.width;
-PdfColor ofBackgroundColor(BuildContext context) =>
-    fromColor(lightTheme.scaffoldBackgroundColor);
 
 class MarkdownBody extends StatelessWidget {
   final String data;
-  MarkdownBody({required this.data});
+  final Color backgroundColor;
+  MarkdownBody({required this.data, required this.backgroundColor});
 
   @override
   Widget build(Context context) {
-    final bodyStyle = textThemes(context)['bodyMedium']!;
+    final bodyStyle = textThemes(backgroundColor.strokeColor)['bodyMedium']!;
     final List<Widget> processed = data.split('\n').map((line) {
       if (line.startsWith(RegExp('^- '))) {
         return Bullet(
           text: line.substring(2),
           style: bodyStyle,
           bulletSize: 1.5 * PdfPageFormat.mm,
-          bulletColor: ofBackgroundColor(context).strokeColor,
+          bulletColor: backgroundColor.strokeColor,
         );
       }
       return Padding(
