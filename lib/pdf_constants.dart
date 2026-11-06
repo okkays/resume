@@ -33,7 +33,7 @@ extension StrokeColor on PdfColor {
   PdfColor get strokeColor => luminance > 0.4 ? onLightColor : onDarkColor;
 }
 
-final verticalDivider = SizedBox(
+Widget get verticalDivider => SizedBox(
   height: scaleFontSize(20),
   child: VerticalDivider(
     width: 20,
@@ -121,8 +121,8 @@ Map<String, TextStyle> textThemes(BuildContext? context) {
       fontBold: fonts['mono'],
       fontItalic: fonts['mono'],
       fontBoldItalic: fonts['mono'],
-      height: scaleFontSize(16),
-      fontSize: scaleFontSize(12),
+      height: scaleFontSize(14),
+      fontSize: scaleFontSize(11),
       letterSpacing: scaleFontSize(0.5),
     ),
     'titleLarge': style.copyWith(
@@ -133,8 +133,8 @@ Map<String, TextStyle> textThemes(BuildContext? context) {
     ),
     'headlineSmall': style.copyWith(
       fontWeight: .normal,
-      height: scaleFontSize(32),
-      fontSize: scaleFontSize(24),
+      height: scaleFontSize(30),
+      fontSize: scaleFontSize(22),
       letterSpacing: scaleFontSize(0.0),
     ),
     'headlineMedium': style.copyWith(

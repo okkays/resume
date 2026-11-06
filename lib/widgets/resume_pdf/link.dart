@@ -1,6 +1,5 @@
 import 'package:pdf/widgets.dart';
 import 'package:resume/pdf_constants.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ResumeLink extends StatelessWidget {
   final String href;
@@ -19,7 +18,7 @@ class ResumeLink extends StatelessWidget {
       uri = Uri.https(href);
     }
 
-    return Link(
+    return UrlLink(
       child: Text(
         label,
         style: textThemes(context)['bodyMedium']!.copyWith(
@@ -28,11 +27,5 @@ class ResumeLink extends StatelessWidget {
       ),
       destination: uri.toString(),
     );
-  }
-}
-
-Future<void> onTapLink(String text, String? href, String title) async {
-  if (href != null) {
-    await launchUrl(Uri.parse(href));
   }
 }

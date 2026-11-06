@@ -28,7 +28,7 @@ class Resume extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(color: ofBackgroundColor(context)),
       child: Padding(
-        padding: EdgeInsets.all(0.5 * PdfPageFormat.inch),
+        padding: EdgeInsets.all(0.25 * PdfPageFormat.inch),
         child: Column(
           mainAxisSize: .min,
           children: spaceChildren(
@@ -86,8 +86,8 @@ class Resume extends StatelessWidget {
                                 ),
                               ),
                               Wrap(
-                                spacing: spacing / 2,
-                                runSpacing: spacing / 2,
+                                spacing: spacing / 4,
+                                runSpacing: spacing / 4,
                                 children: [
                                   ...C.headlineTags.map(
                                     (h) => Tag(
@@ -163,6 +163,23 @@ class Resume extends StatelessWidget {
                   ),
                 ],
               ),
+              Row(
+                // To fit things in the PDF, put college up front here
+                mainAxisSize: .min,
+                children: [
+                  Expanded(
+                    child: IconBox(
+                      color: fromColor(colorScheme.tertiary),
+                      label: 'Education',
+                      icon: Icons.work_history,
+                      child: ExperienceView(
+                        C.education.first,
+                        color: fromColor(colorScheme.tertiary),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               ...C.experience.map(
                 (e) => Row(
                   mainAxisSize: .min,
@@ -181,24 +198,26 @@ class Resume extends StatelessWidget {
                   ],
                 ),
               ),
-              ...C.education.map(
-                (e) => Row(
-                  mainAxisSize: .min,
-                  children: [
-                    Expanded(
-                      child: IconBox(
-                        color: fromColor(colorScheme.tertiary),
-                        label: 'Education',
-                        icon: Icons.work_history,
-                        child: ExperienceView(
-                          e,
-                          color: fromColor(colorScheme.tertiary),
+              ...C.education
+                  .slice(1)
+                  .map(
+                    (e) => Row(
+                      mainAxisSize: .min,
+                      children: [
+                        Expanded(
+                          child: IconBox(
+                            color: fromColor(colorScheme.tertiary),
+                            label: 'Education',
+                            icon: Icons.work_history,
+                            child: ExperienceView(
+                              e,
+                              color: fromColor(colorScheme.tertiary),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
             ],
           ),
         ),

@@ -9,7 +9,10 @@ class Tag extends StatelessWidget {
   @override
   Widget build(Context context) {
     return DecoratedBox(
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(5)),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(5),
+      ),
       child: Padding(
         padding: EdgeInsets.all(3),
         child: Text(

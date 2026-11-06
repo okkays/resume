@@ -123,7 +123,6 @@ CustomPainter _toPainter({
   return (PdfGraphics canvas, PdfPoint point) {
     final width = point.x;
     final height = point.y;
-    print('boop $width $height');
 
     canvas.setFillColor(color);
     canvas.setLineWidth(1);

@@ -31,30 +31,38 @@ class _PdfButtonState extends State<PdfButton> {
             });
 
             final img = await rootBundle.load('images/me.jpg');
+            final pw.ThemeData theme =
+                .withFont(
+                  base: pc.fonts['base'],
+                  italic: pc.fonts['italic'],
+                  bold: pc.fonts['bold'],
+                  boldItalic: pc.fonts['boldItalic'],
+                  icons: pc.fonts['icons'],
+                ).copyWith(
+                  bulletStyle: pc
+                      .textThemes(null)['bodyMedium']!
+                      .copyWith(lineSpacing: 0),
+                );
 
             final pdf = pw.Document(
               title: 'Kevin Kays - Resume',
               author: 'Kevin Kays',
               version: .pdf_1_5,
               compress: true,
-              theme:
-                  .withFont(
-                    base: pc.fonts['base'],
-                    italic: pc.fonts['italic'],
-                    bold: pc.fonts['bold'],
-                    boldItalic: pc.fonts['boldItalic'],
-                    icons: pc.fonts['icons'],
-                  ).copyWith(
-                    bulletStyle: pc
-                        .textThemes(null)['bodyMedium']!
-                        .copyWith(lineSpacing: 0),
-                  ),
+              theme: theme,
             );
 
             pdf.addPage(
               pw.MultiPage(
-                margin: pw.EdgeInsets.all(0),
-                pageFormat: .letter,
+                pageTheme: pw.PageTheme(
+                  pageFormat: .letter,
+                  orientation: .portrait,
+                  theme: theme,
+                  margin: pw.EdgeInsets.all(0),
+                  textDirection: .ltr,
+                  buildBackground: (context) =>
+                      pw.Container(color: pc.ofBackgroundColor(context)),
+                ),
                 build: (context) => [Resume(image: img.buffer.asUint8List())],
               ),
             );

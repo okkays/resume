@@ -10,7 +10,7 @@ typedef Experience = ({
 
 final C = (
   name: 'Kevin Kays',
-  jobTitle: 'Principal Software Engineer and Consultant',
+  jobTitle: 'Principal Software Engineering Consultant',
   email: 'okkays@pm.me',
   phone: '7576520310',
   web: 'okkays.com',
