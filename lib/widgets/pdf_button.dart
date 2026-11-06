@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -85,15 +86,21 @@ class _PdfButtonState extends State<PdfButton> {
             );
 
             var savedFile = await pdf.save();
-            List<int> fileInts = List.from(savedFile);
             final link = web.HTMLAnchorElement()
-              ..href =
-                  "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(fileInts)}"
-              ..setAttribute("download", "Kevin Kays - Resume.pdf")
-              ..setAttribute("target", "_blank")
-              ..setAttribute("type", "hidden");
+              ..href = web.URL.createObjectURL(
+                web.Blob(JSArray()..add(savedFile.toJS)),
+              )
+              ..download = "Kevin Kays - Resume.pdf"
+              ..target = "_blank"
+              ..type = "hidden";
+
             web.document.body?.appendChild(link);
-            link.dispatchEvent(web.MouseEvent('click', .new(bubbles: true, cancelable: true, view: web.window)));
+            link.dispatchEvent(
+              web.MouseEvent(
+                'click',
+                .new(bubbles: true, cancelable: true, view: web.window),
+              ),
+            );
             link.remove();
 
             setState(() {
