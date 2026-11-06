@@ -25,7 +25,7 @@ final C = (
   elevator: [
     r"I've spent my ten-plus years in software working with both tech industry giants and public-sector groups to lead, build, and mentor technical teams in pursuit of simple, practical solutions to loosely-defined problems.",
     r"",
-    "After a decade of building for groups like Google, the Department of Justice, and the State of Massachusetts, my wife and I (and our cat) took a Sabbatical to travel full time. We drove an RV we converted ourselves to the Arctic Ocean, ran/hiked over 2000km, XC skate and classic skied a few hundred more, descended a few dozen technical sandstone canyons, explored a few glaciers, enjoyed sunsets, and generally relished in the constant repairs, problem solving, and out-of-the-box thinking required from a life on the road.",
+    "After a decade of building for groups like the Department of Justice, the State of Massachusetts, and Google, my wife and I (and our cat) took a Sabbatical to travel full time. We drove an RV we converted ourselves to the Arctic Ocean, ran/hiked over 2000km, XC skate and classic skied a few hundred more, descended a few dozen technical sandstone canyons, explored a few glaciers, enjoyed sunsets, and generally relished in the constant repairs, problem solving, and out-of-the-box thinking required from a life on the road.",
     r"",
     "We've finally reached the point where exploring new places, while still fun and exciting, doesn't feel like moving forward anymore, and we're ready to contribute to a community and build something lasting.",
     r"",
