@@ -79,7 +79,7 @@ final C = (
       endDate: DateTime(2022, 12),
       location: 'Newburyport, MA',
       detail: [
-        "When I joined, Raybeam was a 20-or-so person company tackling loosely-defined problems with a flat engineering-only project structure, we'd grown to 80+ people, learned, and evolved together. I played a key role in that evolution, especially with regards to our project work at Google, including:",
+        "When I joined, Raybeam was a 20-or-so person company tackling loosely-defined problems with a flat engineering-only project structure. When I left, we'd grown to 80+ people, learned, and evolved together. I played a key role in that evolution, especially with regards to our project work at Google, including:",
         "- Leading teams of four to fifteen people to design, produce, and deliver solutions used by hundreds of Google employees and vendors on a daily basis.",
         "- Achieving readability in Python, Typescript, Java, and AIP, making me the first person at Raybeam certified to submit and review Google code autonomously.",
         "- Mentoring, enabling, and advocating for teammates and engineers across our company to achieve the same level of ability and client trust.",
