@@ -85,7 +85,7 @@ class _PdfButtonState extends State<PdfButton> {
               ),
             );
 
-            var savedFile = await pdf.save();
+            final savedFile = await pdf.save();
             final link = web.HTMLAnchorElement()
               ..href = web.URL.createObjectURL(
                 web.Blob(JSArray()..add(savedFile.toJS)),
