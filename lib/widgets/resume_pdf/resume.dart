@@ -1,223 +1,208 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
-import 'package:resume/content.dart';
-import 'package:resume/widgets/resume/icon_box.dart';
-import 'package:resume/widgets/resume/link.dart';
-import 'package:resume/constants.dart';
-import 'package:resume/widgets/resume/tag.dart';
-import 'package:collection/collection.dart';
-import 'package:resume/widgets/resume/experience_view.dart';
+import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
+import 'package:resume/content.dart';
+import 'package:resume/widgets/resume_pdf/icon_box.dart';
+import 'package:resume/widgets/resume_pdf/link.dart';
+import 'package:resume/pdf_constants.dart';
+import 'package:resume/widgets/resume_pdf/tag.dart';
+import 'package:collection/collection.dart';
+import 'package:resume/widgets/resume_pdf/experience_view.dart';
 
-class Resume extends StatefulWidget {
-  final ValueChanged<Brightness> onBrightnessChanged;
+class Resume extends StatelessWidget {
+  final Uint8List image;
+  Resume({required this.image});
 
-  const Resume({super.key, required this.onBrightnessChanged});
-
-  @override
-  State<Resume> createState() => _ResumeState();
-}
-
-class _ResumeState extends State<Resume> {
-  int selectedImage = 0;
+  final int selectedImage = 0;
 
   @override
   Widget build(BuildContext context) {
-    for (var image in images) {
-      precacheImage(AssetImage(image), context);
-    }
-
-    final query = MediaQuery.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
-    final isMobile = query.size.width < 500;
-    final isDesktop = !isMobile;
+    final colorScheme = ofColorScheme(context);
 
     final avatar = ClipRRect(
-      borderRadius: .circular(20),
-      child: InkWell(
-        borderRadius: .circular(20),
-        onTap: () {
-          setState(() {
-            selectedImage = (selectedImage + 1) % images.length;
-          });
-        },
-        child: Image.asset(
-          images[selectedImage],
-          height: isMobile ? query.size.width - query.size.width / 6 : 100,
-        ),
-      ),
+      horizontalRadius: 20,
+      verticalRadius: 20,
+      child: Image(MemoryImage(image), height: 125),
     );
 
-    return Column(
-      spacing: spacing,
-      children: [
-        Visibility(visible: isMobile, child: avatar),
-        IntrinsicHeight(
-          child: Row(
-            spacing: spacing / 2,
-            crossAxisAlignment: isMobile ? .start : .stretch,
+    return DecoratedBox(
+      decoration: BoxDecoration(color: ofBackgroundColor(context)),
+      child: Padding(
+        padding: EdgeInsets.all(0.5 * PdfPageFormat.inch),
+        child: Column(
+          mainAxisSize: .min,
+          children: spaceChildren(
+            direction: .vertical,
+            spacing: spacing,
             children: [
-              Visibility(visible: isDesktop, child: avatar),
-              Expanded(
-                child: Padding(
-                  padding: .only(right: spacing / 2),
-                  child: Column(
-                    spacing: spacing / 2,
-                    mainAxisAlignment: .center,
-                    crossAxisAlignment: isDesktop ? .start : .stretch,
-                    children: [
-                      Text(C.name, style: TextTheme.of(context).headlineMedium),
-                      FittedBox(
-                        fit: .fitWidth,
-                        child: Text(
-                          C.jobTitle,
-                          style: TextTheme.of(context).headlineSmall,
-                        ),
-                      ),
-                      FittedBox(
-                        fit: .fitWidth,
-                        child: IntrinsicHeight(
-                          child: Row(
+              Row(
+                mainAxisSize: .min,
+                children: spaceChildren(
+                  direction: .horizontal,
+                  spacing: spacing / 2,
+                  children: [
+                    avatar,
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: spacing / 2),
+                        child: Column(
+                          mainAxisAlignment: .center,
+                          crossAxisAlignment: .start,
+                          children: spaceChildren(
+                            direction: .vertical,
+                            spacing: spacing / 2,
                             children: [
-                              ResumeLink(
-                                label: C.email,
-                                href: 'mailto:${C.email}',
+                              Text(
+                                C.name,
+                                style: textThemes(context)['headlineMedium'],
                               ),
-                              verticalDivider,
-                              ResumeLink(
-                                label: [
-                                  C.phone.substring(0, 3),
-                                  C.phone.substring(3, 6),
-                                  C.phone.substring(6),
-                                ].join('.'),
-                                href: 'tel:${C.phone}',
+                              FittedBox(
+                                fit: .fitWidth,
+                                child: Text(
+                                  C.jobTitle,
+                                  style: textThemes(context)['headlineSmall'],
+                                ),
                               ),
-                              verticalDivider,
-                              ResumeLink(label: C.web, href: C.web),
+                              FittedBox(
+                                fit: .fitWidth,
+                                child: Row(
+                                  children: [
+                                    ResumeLink(
+                                      label: C.email,
+                                      href: 'mailto:${C.email}',
+                                    ),
+                                    verticalDivider,
+                                    ResumeLink(
+                                      label: [
+                                        C.phone.substring(0, 3),
+                                        C.phone.substring(3, 6),
+                                        C.phone.substring(6),
+                                      ].join('.'),
+                                      href: 'tel:${C.phone}',
+                                    ),
+                                    verticalDivider,
+                                    ResumeLink(label: C.web, href: C.web),
+                                  ],
+                                ),
+                              ),
+                              Wrap(
+                                spacing: spacing / 2,
+                                runSpacing: spacing / 2,
+                                children: [
+                                  ...C.headlineTags.map(
+                                    (h) => Tag(
+                                      h.toLowerCase().replaceAll(' ', '_'),
+                                      color: fromColor(colorScheme.secondary),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
                       ),
-                      Wrap(
-                        spacing: spacing / 2,
-                        runSpacing: spacing / 2,
-                        children: [
-                          ...C.headlineTags.map(
-                            (h) => Tag(
-                              h.toLowerCase().replaceAll(' ', '_'),
-                              color: colorScheme.secondary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: IconBox(
-                label: 'About me',
-                color: colorScheme.primary,
-                icon: Icons.elevator,
-                child: MarkdownBody(data: C.elevator.join('\n')),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: IconBox(
-                label: 'Skillset',
-                color: colorScheme.tertiary,
-                icon: Icons.handyman_outlined,
-                child: Column(
-                  crossAxisAlignment: .stretch,
-                  spacing: spacing / 2,
-                  children: [
-                    Wrap(
-                      spacing: spacing / 2,
-                      runSpacing: spacing / 2,
-                      crossAxisAlignment: .start,
-                      children: [
-                        ...C.expertiseChips.expandIndexed(
-                          (i, chips) => chips.map(
-                            (c) => Tag(
-                              c.toLowerCase().replaceAll(' ', '_'),
-                              color: [
-                                colorScheme.primary,
-                                // colorScheme.secondary,
-                                colorScheme.tertiary,
-                              ][i % 2],
-                            ),
-                          ),
-                        ),
-                        Tag('etc', color: colorScheme.secondary),
-                      ],
                     ),
-                    Divider(color: colorScheme.tertiary),
-                    MarkdownBody(data: C.expertiseHeadline.join('\n')),
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-        ...C.experience.map(
-          (e) => Row(
-            children: [
-              Expanded(
-                child: IconBox(
-                  color: colorScheme.secondary,
-                  label: 'Past Experience',
-                  icon: Icons.work_history,
-                  child: ExperienceView(
-                    e,
-                    isMobile: isMobile,
-                    color: colorScheme.secondary,
+              Row(
+                mainAxisSize: .min,
+                children: [
+                  Expanded(
+                    child: IconBox(
+                      label: 'About me',
+                      color: fromColor(colorScheme.primary),
+                      icon: Icons.elevator,
+                      child: MarkdownBody(data: C.elevator.join('\n')),
+                    ),
                   ),
+                ],
+              ),
+              Row(
+                mainAxisSize: .min,
+                children: [
+                  Expanded(
+                    child: IconBox(
+                      label: 'Skillset',
+                      color: fromColor(colorScheme.tertiary),
+                      icon: Icons.handyman_outlined,
+                      child: Column(
+                        crossAxisAlignment: .stretch,
+                        children: spaceChildren(
+                          direction: .vertical,
+                          spacing: spacing / 2,
+                          children: [
+                            Wrap(
+                              spacing: spacing / 2,
+                              runSpacing: spacing / 2,
+                              crossAxisAlignment: .start,
+                              children: [
+                                ...C.expertiseChips.expandIndexed(
+                                  (i, chips) => chips.map(
+                                    (c) => Tag(
+                                      c.toLowerCase().replaceAll(' ', '_'),
+                                      color: [
+                                        fromColor(colorScheme.primary),
+                                        fromColor(colorScheme.tertiary),
+                                      ][i % 2],
+                                    ),
+                                  ),
+                                ),
+                                Tag(
+                                  'etc',
+                                  color: fromColor(colorScheme.secondary),
+                                ),
+                              ],
+                            ),
+                            Divider(color: fromColor(colorScheme.tertiary)),
+                            MarkdownBody(data: C.expertiseHeadline.join('\n')),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              ...C.experience.map(
+                (e) => Row(
+                  mainAxisSize: .min,
+                  children: [
+                    Expanded(
+                      child: IconBox(
+                        color: fromColor(colorScheme.secondary),
+                        label: 'Past Experience',
+                        icon: Icons.work_history,
+                        child: ExperienceView(
+                          e,
+                          color: fromColor(colorScheme.secondary),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ...C.education.map(
+                (e) => Row(
+                  mainAxisSize: .min,
+                  children: [
+                    Expanded(
+                      child: IconBox(
+                        color: fromColor(colorScheme.tertiary),
+                        label: 'Education',
+                        icon: Icons.work_history,
+                        child: ExperienceView(
+                          e,
+                          color: fromColor(colorScheme.tertiary),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
-        ...C.education.map(
-          (e) => Row(
-            children: [
-              Expanded(
-                child: IconBox(
-                  color: colorScheme.tertiary,
-                  label: 'Education',
-                  icon: Icons.work_history,
-                  child: ExperienceView(
-                    isMobile: isMobile,
-                    e,
-                    color: colorScheme.tertiary,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        OverflowBar(
-          alignment: .spaceEvenly,
-          children: C.attributions
-              .map(
-                (e) => MarkdownBody(
-                  data: e,
-                  styleSheet: markdownBodyAs(context, (t) => t.labelMedium!),
-                  onTapLink: onTapLink,
-                ),
-              )
-              .toList(),
-        ),
-      ],
+      ),
     );
   }
 }

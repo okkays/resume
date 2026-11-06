@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:resume/flutter_constants.dart';
 import 'package:resume/constants.dart';
 
 class DateDisplay extends StatelessWidget {
@@ -24,8 +25,9 @@ class DateDisplay extends StatelessWidget {
     final darkerColor = hsl.withLightness(hsl.lightness / 2).toColor();
 
     return DefaultTextStyle(
-      style: TextTheme.of(context).labelMedium!
-          .copyWith(fontFamily: 'Hack', color: color.strokeColor),
+      style: textThemes(
+        context,
+      )['labelMediumMono']!.copyWith(color: color.strokeColor),
       child: Column(
         children: [
           ClipRRect(
@@ -66,7 +68,10 @@ class DateDisplay extends StatelessWidget {
               ),
             ),
           ),
-          Visibility(visible: prefix != null, child: Text(prefix ?? '', style: TextTheme.of(context).labelSmall)),
+          Visibility(
+            visible: prefix != null,
+            child: Text(prefix ?? '', style: textThemes(context)['labelSmall']),
+          ),
         ],
       ),
     );

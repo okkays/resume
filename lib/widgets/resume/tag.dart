@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resume/constants.dart';
+import 'package:resume/flutter_constants.dart';
 
 class Tag extends StatelessWidget {
   final String content;
@@ -15,8 +15,9 @@ class Tag extends StatelessWidget {
         child: Text(
           content,
           softWrap: true,
-          style: TextTheme.of(context).labelMedium!
-              .copyWith(fontFamily: 'Hack', color: color.strokeColor),
+          style: textThemes(
+            context,
+          )['labelMediumMono']!.copyWith(color: color.strokeColor),
         ),
       ),
     );

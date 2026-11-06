@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:pdf/widgets.dart';
+import 'package:resume/pdf_constants.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
 
 class ResumeLink extends StatelessWidget {
   final String href;
   final String label;
 
-  const ResumeLink({required this.label, required this.href, super.key});
+  ResumeLink({required this.label, required this.href});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +19,14 @@ class ResumeLink extends StatelessWidget {
       uri = Uri.https(href);
     }
 
-    return InkWell(
+    return Link(
       child: Text(
         label,
-        style: TextTheme.of(context).bodyMedium!.copyWith(
-          color: Theme.of(context).brightness == .dark
-              ? Colors.amber
-              : Colors.indigo,
+        style: textThemes(context)['bodyMedium']!.copyWith(
+          color: ofBrightness(context) == .dark ? Colors.amber : Colors.indigo,
         ),
       ),
-      onTap: () => launchUrl(uri),
+      destination: uri.toString(),
     );
   }
 }

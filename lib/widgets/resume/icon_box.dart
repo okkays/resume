@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume/flutter_constants.dart';
 import 'package:resume/constants.dart';
 
 class IconBox extends StatelessWidget {
@@ -19,11 +20,10 @@ class IconBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = TextTheme.of(context).bodyMedium!;
+    final textTheme = textThemes(context)['bodyMedium']!;
     final iconSize = textTheme.fontSize! * 2;
     final color = this.color ?? textTheme.color!;
-    final backgroundColor =
-        this.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor;
+    final backgroundColor = this.backgroundColor ?? ofBackgroundColor(context);
 
     return CustomPaint(
       painter: _IconBoxPainter(

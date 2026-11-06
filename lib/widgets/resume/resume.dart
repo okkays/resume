@@ -3,6 +3,7 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:resume/content.dart';
 import 'package:resume/widgets/resume/icon_box.dart';
 import 'package:resume/widgets/resume/link.dart';
+import 'package:resume/flutter_constants.dart';
 import 'package:resume/constants.dart';
 import 'package:resume/widgets/resume/tag.dart';
 import 'package:collection/collection.dart';
@@ -26,9 +27,9 @@ class _ResumeState extends State<Resume> {
       precacheImage(AssetImage(image), context);
     }
 
-    final query = MediaQuery.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
-    final isMobile = query.size.width < 500;
+    final width = ofWidth(context);
+    final colorScheme = ofColorScheme(context);
+    final isMobile = ofWidth(context) < 500;
     final isDesktop = !isMobile;
 
     final avatar = ClipRRect(
@@ -42,7 +43,7 @@ class _ResumeState extends State<Resume> {
         },
         child: Image.asset(
           images[selectedImage],
-          height: isMobile ? query.size.width - query.size.width / 6 : 100,
+          height: isMobile ? width - width / 6 : 100,
         ),
       ),
     );
@@ -65,12 +66,15 @@ class _ResumeState extends State<Resume> {
                     mainAxisAlignment: .center,
                     crossAxisAlignment: isDesktop ? .start : .stretch,
                     children: [
-                      Text(C.name, style: TextTheme.of(context).headlineMedium),
+                      Text(
+                        C.name,
+                        style: textThemes(context)['headlineMedium'],
+                      ),
                       FittedBox(
                         fit: .fitWidth,
                         child: Text(
                           C.jobTitle,
-                          style: TextTheme.of(context).headlineSmall,
+                          style: textThemes(context)['headlineSmall'],
                         ),
                       ),
                       FittedBox(

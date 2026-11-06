@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:resume/content.dart';
 import 'package:resume/widgets/resume/date_display.dart';
+import 'package:resume/flutter_constants.dart';
 import 'package:resume/constants.dart';
 import 'package:resume/widgets/resume/tag.dart';
 
@@ -23,7 +24,7 @@ class ExperienceView extends StatelessWidget {
         children: [
           FittedBox(
             fit: .fitWidth,
-            child: Text(E.title, style: TextTheme.of(context).titleLarge),
+            child: Text(E.title, style: textThemes(context)['titleLarge']),
           ),
           Visibility(
             visible: E.subtitle != null,

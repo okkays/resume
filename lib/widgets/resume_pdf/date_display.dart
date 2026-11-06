@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:resume/constants.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
+import 'package:intl/intl.dart';
+import 'package:resume/pdf_constants.dart';
+import 'package:resume/constants.dart';
 
 class DateDisplay extends StatelessWidget {
   final DateTime? startDate;
@@ -10,65 +10,78 @@ class DateDisplay extends StatelessWidget {
   final DateTime? endDate;
   final Color color;
 
-  const DateDisplay({
-    this.startDate,
-    this.prefix,
-    this.endDate,
-    required this.color,
-    super.key,
-  });
+  DateDisplay({this.startDate, this.prefix, this.endDate, required this.color});
 
   @override
   Widget build(BuildContext context) {
     final double padding = 3;
 
-    final HSLColor hsl = HSLColor.fromColor(color);
-    final darkerColor = hsl.withLightness(hsl.lightness / 2).toColor();
+    final hsl = color.toHsl();
+    final darkerColor = Color.fromInt(
+      hsl.withLightness(hsl.lightness / 2).toInt(),
+    );
 
     return DefaultTextStyle(
-      style: TextTheme.of(context).labelMedium!
-          .copyWith(fontFamily: 'Hack', color: color.strokeColor),
+      style: textThemes(
+        context,
+      )['labelMediumMono']!.copyWith(color: color.strokeColor),
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: .circular(5),
+            verticalRadius: 5,
+            horizontalRadius: 5,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: color,
-                borderRadius: .circular(5),
+                borderRadius: BorderRadius.circular(5),
               ),
               child: Padding(
-                padding: .all(padding),
+                padding: EdgeInsets.all(padding),
                 child: Wrap(
                   children: [
-                    Visibility(
-                      visible: startDate != null,
-                      child: Wrap(
-                        children: [
-                          Padding(
-                            padding: .only(right: spacing / 2),
-                            child: CustomPaint(
-                              painter: _ToPainter(
-                                padding: padding,
-                                arrowWidth: spacing / 3,
-                                color: darkerColor,
-                              ),
-                              child: Padding(
-                                padding: .only(right: spacing / 4),
-                                child: _DatePart(date: startDate, color: color),
-                              ),
+                    ...(startDate == null
+                        ? []
+                        : [
+                            Wrap(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: spacing / 2),
+                                  child: CustomPaint(
+                                    painter: _toPainter(
+                                      padding: padding,
+                                      arrowWidth: spacing / 3,
+                                      color: darkerColor,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                        right: spacing / 4,
+                                      ),
+                                      child: _DatePart(
+                                        date: startDate,
+                                        color: color,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
+                          ]),
                     _DatePart(date: endDate, color: color),
                   ],
                 ),
               ),
             ),
           ),
-          Visibility(visible: prefix != null, child: Text(prefix ?? '', style: TextTheme.of(context).labelSmall)),
+          ...(prefix == null
+              ? []
+              : [
+                  Text(
+                    prefix!,
+                    style: textThemes(context)['labelSmall']!.copyWith(
+                      color: ofBackgroundColor(context).strokeColor,
+                    ),
+                  ),
+                ]),
         ],
       ),
     );
@@ -79,7 +92,7 @@ class _DatePart extends StatelessWidget {
   final DateTime? date;
   final Color color;
 
-  const _DatePart({this.date, required this.color});
+  _DatePart({this.date, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +104,10 @@ class _DatePart extends StatelessWidget {
 
       return Column(
         children: [
-          IntrinsicHeight(
-            child: Wrap(
-              children: [
-                Text([year, month].map((p) => p.toLowerCase()).join('-')),
-              ],
-            ),
+          Wrap(
+            children: [
+              Text([year, month].map((p) => p.toLowerCase()).join('-')),
+            ],
           ),
         ],
       );
@@ -104,37 +115,27 @@ class _DatePart extends StatelessWidget {
   }
 }
 
-class _ToPainter extends CustomPainter {
-  final Color color;
-  final double arrowWidth;
-  final double padding;
-  _ToPainter({
-    required this.arrowWidth,
-    required this.padding,
-    required this.color,
-  });
+CustomPainter _toPainter({
+  required double arrowWidth,
+  required double padding,
+  required Color color,
+}) {
+  return (PdfGraphics canvas, PdfPoint point) {
+    final width = point.x;
+    final height = point.y;
+    print('boop $width $height');
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    final stroke = Paint();
-    stroke.color = color;
-    stroke.style = .fill;
-    stroke.strokeWidth = 1;
-    stroke.strokeJoin = .round;
-    stroke.strokeCap = .round;
+    canvas.setFillColor(color);
+    canvas.setLineWidth(1);
+    canvas.setLineJoin(.round);
+    canvas.setLineCap(.round);
 
-    final path = Path();
-    path.moveTo(-padding - 1, -padding - 1);
-    path.lineTo(size.width, -padding - 1);
-    path.lineTo(size.width + arrowWidth, size.height / 2);
-    path.lineTo(size.width, size.height + padding + 1);
-    path.lineTo(-padding - 1, size.height + padding + 1);
-
-    canvas.drawPath(path, stroke);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
+    canvas.moveTo(-padding - 1, -padding - 1);
+    canvas.lineTo(width, -padding - 1);
+    canvas.lineTo(width + arrowWidth, height / 2);
+    canvas.lineTo(width, height + padding + 1);
+    canvas.lineTo(-padding - 1, height + padding + 1);
+    canvas.lineTo(-padding - 1, -padding - 1);
+    canvas.fillPath();
+  };
 }

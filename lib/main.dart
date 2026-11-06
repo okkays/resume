@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:printing/printing.dart';
 import 'package:resume/widgets/brightness_toggle.dart';
 import 'package:resume/widgets/pdf_button.dart';
 import 'package:resume/constants.dart';
+import 'package:resume/flutter_constants.dart';
+import 'package:resume/pdf_constants.dart' as pdf;
 import 'package:resume/widgets/resume/resume.dart';
 
-void main() {
+void main() async {
   runApp(const ResumeApp());
+
+  pdf.fonts['mono'] = .ttf(await rootBundle.load('fonts/Hack-Regular.ttf'));
+  pdf.fonts['base'] = .ttf(await rootBundle.load('fonts/Lato-Regular.ttf'));
+  pdf.fonts['italic'] = .ttf(await rootBundle.load('fonts/Lato-Italic.ttf'));
+  pdf.fonts['boldItalic'] = .ttf(
+    await rootBundle.load('fonts/Lato-SemiboldItalic.ttf'),
+  );
+  pdf.fonts['bold'] = .ttf(await rootBundle.load('fonts/Lato-Semibold.ttf'));
+  pdf.fonts['icons'] = await PdfGoogleFonts.materialIcons();
+
 }
 
 class ResumeApp extends StatefulWidget {
