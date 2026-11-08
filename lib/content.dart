@@ -48,6 +48,7 @@ final C = (
     ["interviewing", "cross functional"], // company
     ["debugging"], // general
     ["general it"],
+    ["język polski"],
   ],
   expertiseHeadline: [
     r"In additional to my technical skills, I put great effort into active listening, empowering teammates and clients, mentorship, solving miscommunication, continuously learning by recognizing my mistakes, and building patience through the understanding that progress takes work.",
